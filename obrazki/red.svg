@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="69.507 32.511 364.91 227.018" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <rect x="68.386" y="33.632" width="367.153" height="226.457" style="stroke: rgb(0, 0, 0); fill: rgb(210, 0, 11);"/>
+  <polyline style="fill: rgb(212, 85, 85); stroke: rgba(212, 85, 85, 0);" points="68.386 33.632 69.507 52.691 415.92 260.651 435.538 259.529 435.538 238.79 88.004 34.193" bx:origin="0.524 0.483"/>
+  <path style="paint-order: stroke; fill: rgb(212, 85, 85); stroke: rgba(0, 0, 0, 0);" d="M 68.007 31.94 L 76.132 49.564 L 417.305 270.731 L 434.398 262.062 L 425.372 246.252 C 423.492 242.489 87.335 23.2 87.348 23.226" transform="matrix(0.441314, -0.897353, 0.897353, 0.441314, 8.982588, 306.883606)"/>
+</svg>
