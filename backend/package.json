@@ -1,0 +1,24 @@
+{
+  "name": "PSWprojekt",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "git@github.com:stoooodnia/PSWprojekt.git",
+  "author": "stoodnia <k.studniarek.414@studms.ug.edu.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.17.15",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.2"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.4"
+  },
+    "scripts": {
+    "build": "npx tsc",
+    "start": "node build/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\""
+  }
+}
