@@ -1,0 +1,1 @@
+All right for "Spy" drawing from front page belongs to IQDoodle.com, and the photo is taken from their website. Since the project is not profitable and its pure for education and training, no contact with authors has been made to obtain rights.
