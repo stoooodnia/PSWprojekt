@@ -5,8 +5,12 @@
   font-family: "Work Sans", sans-serif;
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 body {
-  width: 100vh;
-  height: 100vh;
-  background: url("./assets/spy.jpg") no-repeat left;
-}/*# sourceMappingURL=index.css.map */
+  background: url("./assets/images/spy.jpg") no-repeat left;
+} /*# sourceMappingURL=index.css.map */
