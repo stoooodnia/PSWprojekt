@@ -5,12 +5,12 @@
   font-family: "Work Sans", sans-serif;
 }
 
-* {
+*{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 
-body {
-  background: url("./assets/images/spy.jpg") no-repeat left;
-} /*# sourceMappingURL=index.css.map */
+#spy {
+  background: url("./assets/images/spy.jpg") no-repeat left -50px;
+}
