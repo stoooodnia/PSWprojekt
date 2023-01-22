@@ -1,13 +1,13 @@
-import React from  'react'
+import React from "react";
 import WelcomePage from "./components/WelcomePage";
+import RegisterPage from "./components/RegisterPage";
 
 function App() {
-
   return (
     <div className="App">
-      <WelcomePage />
+      <RegisterPage />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

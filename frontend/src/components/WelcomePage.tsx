@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Resolver, useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import sha256 from "fast-sha256";
 import nacl from "tweetnacl-util";
 import * as yup from "yup";
