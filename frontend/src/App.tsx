@@ -1,13 +1,13 @@
 import React from "react";
 import WelcomePage from "./components/WelcomePage";
 import RegisterPage from "./components/RegisterPage";
-import MainPageLogged from "./components/MainPageLogged";
+import Play from "./components/Play";
 import NotFound from "./components/NotFound";
 
 function App() {
   return (
     <div>
-      <NotFound />
+      <Play />
     </div>
   );
 }
