@@ -12,8 +12,8 @@ const loginSchema = yup.object().shape({
   id: yup
     .string()
     .required("Podaj id gry!")
-    .min(6, "Id gry ma 6 znaków!")
-    .max(6, "Id gry ma 6 znaków!"),
+    .min(6, "ID gry ma 6 znaków!")
+    .max(6, "ID gry ma 6 znaków!"),
 });
 
 const Play: FC = () => {
@@ -53,6 +53,7 @@ const Play: FC = () => {
               <input
                 {...register("id")}
                 placeholder="ID Gry"
+                autoComplete="off"
                 className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
               />
               {errors.id && (

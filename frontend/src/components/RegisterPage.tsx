@@ -57,12 +57,13 @@ const RegisterPage: FC = () => {
         <div className="w-full">
           <form
             onSubmit={handleSubmit(formSubmitHandler)}
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-2 pl-28"
           >
             <div className="flex flex-row items-center gap-2">
               <input
                 {...register("nickname")}
                 placeholder="nickname"
+                autoComplete="off"
                 className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
               />
               {errors.nickname && (
@@ -105,9 +106,12 @@ const RegisterPage: FC = () => {
               >
                 zarejestruj
               </button>
-              <button className="inline-block align-baseline font-bold text-m text-pink-500 hover:text-pink-800 ">
+              <a
+                href="/"
+                className="flex items-center align-baseline font-bold text-m text-pink-500 hover:text-pink-800 "
+              >
                 zaloguj się
-              </button>
+              </a>
             </div>
           </form>
         </div>

@@ -45,9 +45,9 @@ const WelcomePage: FC = () => {
         <div className="w-full">
           <form
             onSubmit={handleSubmit(formSubmitHandler)}
-            className="flex flex-col justify-center items-center gap-2"
+            className="flex flex-col justify-center items-center gap-10"
           >
-            <div className="flex justify-center w-full gap-10">
+            <div className="flex justify-center w-full gap-2">
               <div className="flex flex-col items-center gap-2">
                 <input
                   {...register("email")}
@@ -85,9 +85,12 @@ const WelcomePage: FC = () => {
           </form>
         </div>
         <div>
-          <button className="inline-block align-baseline font-bold text-m text-pink-500 hover:text-pink-800">
+          <a
+            href="/register"
+            className="inline-block align-baseline font-bold text-m text-pink-500 hover:text-pink-800"
+          >
             zarejestruj się
-          </button>
+          </a>
         </div>
       </div>
     </div>
