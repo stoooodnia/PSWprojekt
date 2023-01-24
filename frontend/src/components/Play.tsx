@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import NavBar from "./NavBar";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
@@ -16,7 +16,7 @@ const loginSchema = yup.object().shape({
     .max(6, "ID gry ma 6 znaków!"),
 });
 
-const Play: FC = () => {
+const Play = () => {
   const {
     register,
     handleSubmit,

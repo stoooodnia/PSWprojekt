@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import sha256 from "fast-sha256";
 import nacl from "tweetnacl-util";
@@ -25,7 +25,7 @@ const loginSchema = yup.object().shape({
   password: yup.string().required("podaj hasło!").min(4, "Hasło za krótkie!"),
 });
 
-const RegisterPage: FC = () => {
+const RegisterPage = () => {
   const {
     register,
     handleSubmit,

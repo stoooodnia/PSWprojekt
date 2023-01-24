@@ -4,6 +4,7 @@ import WelcomePage from "../components/WelcomePage";
 import RegisterPage from "../components/RegisterPage";
 import Play from "../components/Play";
 import NotFound from "../components/NotFound";
+import Board from "../components/Game";
 
 export const router = createBrowserRouter([
   {
@@ -33,5 +34,9 @@ export const router = createBrowserRouter([
   {
     path: "/stats",
     element: <div>debil: 1</div>,
+  },
+  {
+    path: "/board",
+    element: <Board />,
   },
 ]);

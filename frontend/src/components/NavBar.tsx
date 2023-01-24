@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 
-const NavBar: FC = () => {
+const NavBar = () => {
   return (
     <nav className="m-5 p-2">
       <ul className="flex border-b-2 border-myGray">

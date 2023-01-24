@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 
-const NotFound: FC = () => {
+const NotFound = () => {
   return (
     <div className="flex flex-row flex-end h-screen w-screen">
       {" "}
