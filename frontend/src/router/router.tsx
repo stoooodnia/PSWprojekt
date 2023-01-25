@@ -4,7 +4,8 @@ import WelcomePage from "../components/WelcomePage";
 import RegisterPage from "../components/RegisterPage";
 import Play from "../components/Play";
 import NotFound from "../components/NotFound";
-import Board from "../components/Game";
+import Game from "../components/Game";
+import Lobby from "../components/Lobby";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
     element: <div>debil: 1</div>,
   },
   {
-    path: "/board",
-    element: <Board />,
+    path: "/game",
+    element: <Game />,
   },
 ]);

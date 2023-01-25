@@ -12,7 +12,7 @@ type FormValues = {
   password: string;
 };
 
-const loginSchema = yup.object().shape({
+const registerSchema = yup.object().shape({
   nickname: yup
     .string()
     .required("Podaj nick!")
@@ -32,7 +32,7 @@ const RegisterPage = () => {
     watch,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(registerSchema),
     defaultValues: {
       nickname: "",
       email: "",
