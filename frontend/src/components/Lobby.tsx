@@ -54,27 +54,27 @@ const Lobby = () => {
         >
           <div className="flex flex-row items-center gap-2">
             <label htmlFor="time">Długość tury</label>
-            <input
-              {...register("time")}
-              id="time"
-              type="range"
-              min="1"
-              max="10"
-            />
-            <span>
-              {watch("time")} {watch("time") > 1 ? "minuty" : "minuta"}
-            </span>
+            <select {...register("time")} id="time">
+              <option value="1">1 minuta</option>
+              <option value="2">2 minuty</option>
+              <option value="3">3 minuty</option>
+              <option value="4">4 minuty</option>
+              <option value="5">5 minuty</option>
+              <option value="6">6 minuty</option>
+              <option value="7">7 minuty</option>
+              <option value="8">8 minuty</option>
+              <option value="9">9 minuty</option>
+              <option value="10">10 minuty</option>
+            </select>
           </div>
           <div className="flex flex-row items-center gap-2">
             <label htmlFor="teamSize">Wielkość drużyny</label>
-            <input
-              {...register("teamSize")}
-              id="teamSize"
-              type="range"
-              min="2"
-              max="4"
-            />
-            <span>{watch("teamSize")} osoby</span>
+            <select {...register("teamSize")} id="teamSize">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
           </div>
           <div className="flex flex-row items-center gap-2">
             <input
