@@ -40,4 +40,8 @@ export const router = createBrowserRouter([
     path: "/game",
     element: <Game />,
   },
+  {
+    path: "/lobby",
+    element: <Lobby />,
+  },
 ]);
