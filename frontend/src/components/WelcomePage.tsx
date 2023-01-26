@@ -22,7 +22,6 @@ const WelcomePage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(loginSchema),

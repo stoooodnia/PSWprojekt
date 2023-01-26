@@ -1,7 +1,5 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 type FormValues = {
   time: number;
@@ -9,19 +7,6 @@ type FormValues = {
   team1: string;
   team2: string;
 };
-
-const gameSetupSchema = yup.object().shape({
-  team1: yup
-    .string()
-    .required("Podaj nazwę drużyny!")
-    .min(3, "Nazwa drużyny musi mieć przynajmniej 3 znaki!")
-    .max(15, "Nazwa drużyny może mieć maksymalnie 15 znaków!"),
-  team2: yup
-    .string()
-    .required("Podaj nazwę drużyny!")
-    .min(3, "Nazwa drużyny musi mieć przynajmniej 3 znaki!")
-    .max(15, "Nazwa drużyny może mieć maksymalnie 15 znaków!"),
-});
 
 const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
   alert(
@@ -36,25 +21,50 @@ const Lobby = () => {
     watch,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: yupResolver(gameSetupSchema),
     defaultValues: {
       time: 4,
       teamSize: 2,
-      team1: "",
-      team2: "",
+      team1: "drużyna 1",
+      team2: "drużyna 2",
     },
   });
   return (
     <div className="flex flex-row flex-end h-screen w-screen">
       <div id="spy" className="flex h-full w-1/2" />
-      <div>
+      <div className=" flex flex-col items-center justify-center gap-4">
         <form
           onSubmit={handleSubmit(formSubmitHandler)}
-          className="flex flex-col gap-2 pl-28"
+          className="flex flex-col gap-2 items-center"
         >
+          <div className="flex w-full mb-6">
+            <div className="flex w-1/2">
+              {" "}
+              <button
+                type="submit"
+                className="w-42 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"
+              >
+                Rozpocznij rozgrywkę
+              </button>
+            </div>
+            <div className="flex justify-end w-1/2 pr-8">
+              {" "}
+              <a
+                href=""
+                className="flex items-center align-baseline font-bold text-m text-pink-500 hover:text-pink-800 "
+              >
+                powrót
+              </a>
+            </div>
+          </div>
           <div className="flex flex-row items-center gap-2">
-            <label htmlFor="time">Długość tury</label>
-            <select {...register("time")} id="time">
+            <label htmlFor="time" className="">
+              Długość tury{" "}
+            </label>
+            <select
+              {...register("time")}
+              id="time"
+              className="w-24 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
+            >
               <option value="1">1 minuta</option>
               <option value="2">2 minuty</option>
               <option value="3">3 minuty</option>
@@ -69,53 +79,50 @@ const Lobby = () => {
           </div>
           <div className="flex flex-row items-center gap-2">
             <label htmlFor="teamSize">Wielkość drużyny</label>
-            <select {...register("teamSize")} id="teamSize">
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+            <select
+              {...register("teamSize")}
+              id="teamSize"
+              className="w-24 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
+            >
+              <option value="2">2 graczy</option>
+              <option value="3">3 graczy</option>
+              <option value="4">4 graczy</option>
+              <option value="5">5 graczy</option>
             </select>
           </div>
-          <div className="flex flex-row items-center gap-2">
-            <input
-              {...register("team1")}
-              placeholder="nazwa drużyny1"
-              autoComplete="off"
-              className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
-            />
-            {errors.team1 && (
-              <span className="text-pink-900 font-bold">
-                {errors.team1.message}
-              </span>
-            )}
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <input
-              {...register("team2")}
-              placeholder="nazwa drużyny2"
-              className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
-            />
-            {errors.team2 && (
-              <span className="text-pink-900 font-bold">
-                {errors.team2.message}
-              </span>
-            )}
-          </div>
-          <div className="flex gap-6">
-            <button
-              type="submit"
-              className="w-32 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"
-            >
-              zarejestruj
-            </button>
-            <a
-              href="/"
-              className="flex items-center align-baseline font-bold text-m text-pink-500 hover:text-pink-800 "
-            >
-              zaloguj się
-            </a>
+          <div className="flex gap-4 mt-5">
+            <div className="flex flex-row items-center gap-2">
+              <input
+                {...register("team1")}
+                required
+                placeholder="drużyna 1"
+                maxLength={15}
+                autoComplete="off"
+                className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
+              />
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <input
+                {...register("team2")}
+                required
+                placeholder="drużyna 2"
+                maxLength={15}
+                className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
+              />
+            </div>
           </div>
         </form>
+
+        <div className="flex flex-row gap-4">
+          <div id="t1" className="flex flex-col items-center gap-2">
+            <ul className="bg-gray-200 w-56 h-80  border border-gray-200 rounded-xl p-4">
+              <li>gracz1</li>
+            </ul>
+          </div>
+          <div id="t2" className="flex flex-col items-center gap-2">
+            <ul className="bg-gray-200 w-56 h-80  border border-gray-200 rounded-xl p-4"></ul>
+          </div>
+        </div>
       </div>
     </div>
   );
