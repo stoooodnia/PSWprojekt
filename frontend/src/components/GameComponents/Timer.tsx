@@ -33,4 +33,4 @@ const Timer = ({ expiryTimestamp, timerControlArg }: Probs) => {
   );
 };
 
-export default Timer;x
+export default Timer;

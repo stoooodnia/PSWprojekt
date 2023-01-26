@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import sha256 from "fast-sha256";
-import nacl from "tweetnacl-util";
+import CryptoJS from "crypto-js";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ClipLoader } from "react-spinners";
 
 type FormValues = {
   email: string;
@@ -19,9 +19,13 @@ const loginSchema = yup.object().shape({
 });
 
 const WelcomePage = () => {
+  //loading state
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(loginSchema),
@@ -32,8 +36,42 @@ const WelcomePage = () => {
   });
 
   const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
-    const password = sha256(nacl.decodeUTF8(data.password));
-    alert(`email: ${data.email} password: ${password} `);
+    setIsLoading(true);
+
+    const password = CryptoJS.SHA256(data.password).toString();
+
+    setTimeout(() => {
+      fetch("http://localhost:1337/api/sessions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: password,
+        }),
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            response.json().then((data) => {
+              console.log(data);
+              setIsLoading(false);
+            });
+            setIsLoading(false);
+          }
+          if (response.status === 401) {
+            setError("email", {
+              type: "manual",
+              message: "Nieprawidłowy email lub hasło!",
+            });
+            setIsLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+        });
+    }, 1000);
   };
 
   return (
@@ -74,7 +112,7 @@ const WelcomePage = () => {
                 )}
               </div>
             </div>
-
+            {isLoading && <ClipLoader color="rgba(157, 23, 77, 1)" />}
             <button
               type="submit"
               className=" w-24 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border  rounded shadow"

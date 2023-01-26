@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import sha256 from "fast-sha256";
-import nacl from "tweetnacl-util";
+import CryptoJS from "crypto-js";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordStrengthBar from "react-password-strength-bar";
@@ -10,6 +9,7 @@ type FormValues = {
   nickname: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
 };
 
 const registerSchema = yup.object().shape({
@@ -23,6 +23,7 @@ const registerSchema = yup.object().shape({
     .email("Podaj prawidłowy adres email!")
     .required("Podaj adres email!"),
   password: yup.string().required("podaj hasło!").min(4, "Hasło za krótkie!"),
+  passwordConfirmation: yup.string().required("potwierdź hasło!"),
 });
 
 const RegisterPage = () => {
@@ -30,6 +31,7 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     watch,
+    setError,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(registerSchema),
@@ -37,14 +39,51 @@ const RegisterPage = () => {
       nickname: "",
       email: "",
       password: "",
+      passwordConfirmation: "",
     },
   });
 
   const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
-    const password = sha256(nacl.decodeUTF8(data.password));
-    alert(
-      `nickname: ${data.email} email: ${data.email} password: ${password} `
-    );
+    if (data.password !== data.passwordConfirmation) {
+      setError("passwordConfirmation", {
+        type: "manual",
+        message: "Hasła nie są takie same!",
+      });
+      return;
+    }
+
+    const password = CryptoJS.SHA256(data.password).toString();
+    const passwordConfirmation = CryptoJS.SHA256(
+      data.passwordConfirmation
+    ).toString();
+    fetch("http://localhost:1337/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+        nickname: data.nickname,
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        response.json().then((data) => {
+          console.log(
+            "zarejstrowano użytkownika " +
+              "\n nickname: " +
+              data.nickname +
+              "\n email: " +
+              data.email
+          );
+          // TODO: redirect to login page
+        });
+      }
+      if (response.status === 409) {
+        // setError() na pole które się powtarza
+      }
+    });
   };
 
   const password = watch("password");
@@ -95,6 +134,19 @@ const RegisterPage = () => {
               {errors.password && (
                 <span className="text-pink-900 font-bold">
                   {errors.password.message}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <input
+                {...register("passwordConfirmation")}
+                type="password"
+                placeholder="hasło"
+                className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
+              />
+              {errors.passwordConfirmation && (
+                <span className="text-pink-900 font-bold">
+                  {errors.passwordConfirmation.message}
                 </span>
               )}
             </div>
