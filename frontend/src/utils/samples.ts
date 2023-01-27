@@ -28,10 +28,10 @@ export const words = [
 ];
 // board sample
 export const board = [
-  ["black", "red", "white", "blue", "white"],
-  ["white", "blue", "red", "blue", "white"],
+  ["black", "blue", "white", "white", "red"],
+  ["white", "blue", "red", "white", "blue"],
   ["red", "red", "white", "blue", "white"],
-  ["white", "blue", "red", "blue", "white"],
+  ["white", "blue", "red", "white", "white"],
   ["red", "red", "white", "blue", "white"],
 ];
 export const gracz = {

@@ -5,6 +5,7 @@ import Chat from "./GameComponents/Chat";
 import Score from "./GameComponents/Score";
 import Timer from "./GameComponents/Timer";
 import Word from "./GameComponents/Word";
+import BoardColorsLayout from "./GameComponents/BoardColorsLayout";
 
 const Game = () => {
   const time = new Date();
@@ -24,7 +25,8 @@ const Game = () => {
       <div id="right" className="border-l-2 border-black w-1/4 h-screen">
         <Score />
         <Teams />
-        <div id="chat"></div>
+        <Chat />
+        <BoardColorsLayout />
       </div>
     </div>
   );
