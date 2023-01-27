@@ -6,6 +6,10 @@ import Play from "../components/Play";
 import NotFound from "../components/NotFound";
 import Game from "../components/Game";
 import Lobby from "../components/Lobby";
+import Friends from "../components/Friends";
+import Manual from "../components/Manual";
+import Stats from "../components/Stats";
+import Profile from "../components/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -26,15 +30,15 @@ export const router = createBrowserRouter([
   },
   {
     path: "/friends",
-    element: <div>nie masz przyjaciół :c</div>,
+    element: <Friends />,
   },
   {
     path: "/manual",
-    element: <div>lol</div>,
+    element: <Manual />,
   },
   {
     path: "/stats",
-    element: <div>debil: 1</div>,
+    element: <Stats />,
   },
   {
     path: "/game",
@@ -43,5 +47,9 @@ export const router = createBrowserRouter([
   {
     path: "/lobby",
     element: <Lobby />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);

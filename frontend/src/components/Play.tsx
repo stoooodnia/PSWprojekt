@@ -8,7 +8,7 @@ type FormValues = {
   id: string;
 };
 
-const loginSchema = yup.object().shape({
+const gameSchema = yup.object().shape({
   id: yup
     .string()
     .required("Podaj id gry!")
@@ -20,10 +20,9 @@ const Play = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(gameSchema),
     defaultValues: {
       id: "",
     },
