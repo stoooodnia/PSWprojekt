@@ -1,5 +1,5 @@
 import React from "react";
-import Board from "./GameComponents/Board";
+import BoardInfo from "./GameComponents/BoardInfo";
 import Lobby from "./GameComponents/Teams";
 import Chat from "./GameComponents/Chat";
 import Score from "./GameComponents/Score";
@@ -18,7 +18,7 @@ const Game = () => {
           <Word />
         </div>
         <div id="tiles" className="w-full h-full">
-          <Board />
+          <BoardInfo />
         </div>
       </div>
       <div id="right" className="border-l-2 border-black">

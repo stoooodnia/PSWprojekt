@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Tile from "./Tile";
-import { randomNoRepeats } from "../../utils/randomNoReapets";
-import { words, board } from "../../utils/samples";
 
-const Board = () => {
-  var chooser = randomNoRepeats(words);
+type Props = {
+  words: string[];
+  board: string[][];
+};
+
+const Board = ({ words, board }: Props) => {
+  let wordIndex = 0;
   // show true colors
   const [show, setShow] = useState(false);
+  const [chosen, setChosen] = useState<number[]>([]);
 
   return (
     <table className="h-full w-full bg-white flex flex-col justify-center">
@@ -15,9 +19,18 @@ const Board = () => {
           return (
             <tr key={i} className="flex flex-row items-center justify-center">
               {row.map((tile, j) => {
-                var tempWord: string = chooser();
+                var tempWord: string = words[wordIndex];
+                wordIndex++;
                 return (
-                  <Tile key={j} color={tile} show={show} word={tempWord} />
+                  <Tile
+                    key={parseInt(i.toString() + j.toString())}
+                    tkey={parseInt(i.toString() + j.toString())}
+                    color={tile}
+                    show={show}
+                    word={tempWord}
+                    chosen={chosen}
+                    setChosen={setChosen}
+                  />
                 );
               })}
             </tr>
