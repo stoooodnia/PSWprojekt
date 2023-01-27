@@ -18,10 +18,8 @@ const Tile = ({ tkey, color, show, word, setChosen, chosen }: Props) => {
     if (!clicked) {
       setChosen([...chosen, tkey]);
       setClicked(true);
-      console.log("clicked" + chosen);
     } else {
       setClicked(false);
-      console.log("unclicked" + chosen);
       setChosen(chosen.filter((item) => item !== tkey));
     }
   };

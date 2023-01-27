@@ -4,13 +4,14 @@ import Tile from "./Tile";
 type Props = {
   words: string[];
   board: string[][];
+  show: boolean;
+  chosen: number[];
+  setChosen: (arg: number[]) => void;
 };
 
-const Board = ({ words, board }: Props) => {
+const Board = ({ words, board, chosen, setChosen, show }: Props) => {
   let wordIndex = 0;
   // show true colors
-  const [show, setShow] = useState(false);
-  const [chosen, setChosen] = useState<number[]>([]);
 
   return (
     <table className="h-full w-full bg-white flex flex-col justify-center">

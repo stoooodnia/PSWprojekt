@@ -11,7 +11,7 @@ const Game = () => {
   time.setSeconds(time.getSeconds() + 600);
 
   return (
-    <div id="main" className="bg-white flex">
+    <div id="main" className="bg-white flex h-screen w-screen">
       <div id="left" className="w-3/4 h-screen">
         <div id="topleft">
           <Timer expiryTimestamp={time} timerControlArg={"start"} />
@@ -21,8 +21,8 @@ const Game = () => {
           <BoardInfo />
         </div>
       </div>
-      <div id="right" className="border-l-2 border-black">
-        <div id="score"></div>
+      <div id="right" className="border-l-2 border-black w-1/4 h-screen">
+        <Score />
         <div id="lobby"></div>
         <div id="chat"></div>
       </div>
