@@ -9,7 +9,7 @@ const Score = () => {
     <div className="flex w-full mt-2 h-1/12 justify-center items-center">
       <div
         id="score1"
-        className="text-red-600 text-7xl font-bold w-20 flex items-center justify-center"
+        className="text-red-500 text-7xl font-bold w-20 flex items-center justify-center"
       >
         {getScore().team1}
       </div>

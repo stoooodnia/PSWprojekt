@@ -4,12 +4,9 @@ import Tile from "./Tile";
 type Props = {
   words: string[];
   board: string[][];
-  show: boolean;
-  chosen: number[];
-  setChosen: (arg: number[]) => void;
 };
 
-const Board = ({ words, board, chosen, setChosen, show }: Props) => {
+const Board = ({ words, board }: Props) => {
   let wordIndex = 0;
   // show true colors
 
@@ -26,11 +23,8 @@ const Board = ({ words, board, chosen, setChosen, show }: Props) => {
                   <Tile
                     key={parseInt(i.toString() + j.toString())}
                     tkey={parseInt(i.toString() + j.toString())}
-                    color={tile}
-                    show={show}
+                    bgcolor={tile}
                     word={tempWord}
-                    chosen={chosen}
-                    setChosen={setChosen}
                   />
                 );
               })}

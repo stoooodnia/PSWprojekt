@@ -22,10 +22,13 @@ const Game = () => {
           <BoardInfo />
         </div>
       </div>
-      <div id="right" className="border-l-2 border-black w-1/4 h-screen">
+      <div id="right" className="mr-10 w-1/4 h-screen">
         <Score />
         <Teams />
         <Chat />
+        {
+          //TODO: if gracz !== leader, then dont show BoardColorsLayout
+        }
         <BoardColorsLayout />
       </div>
     </div>
