@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import CryptoJS from "crypto-js";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordStrengthBar from "react-password-strength-bar";
+import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 type FormValues = {
   nickname: string;
@@ -43,12 +45,18 @@ const RegisterPage = () => {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
   const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
+    setIsLoading(true);
     if (data.password !== data.passwordConfirmation) {
       setError("passwordConfirmation", {
         type: "manual",
         message: "Hasła nie są takie same!",
       });
+      setIsLoading(false);
       return;
     }
 
@@ -77,11 +85,21 @@ const RegisterPage = () => {
               "\n email: " +
               data.email
           );
-          // TODO: redirect to login page
         });
+
+        setTimeout(() => {
+          navigate("/");
+          setIsLoading(false);
+        }, 2000);
       }
       if (response.status === 409) {
-        // setError() na pole które się powtarza
+        setTimeout(() => {
+          setError("email", {
+            type: "manual",
+            message: "Użytkownik o podanym adresie email już istnieje!",
+          });
+          setIsLoading(false);
+        }, 2000);
       }
     });
   };
@@ -158,6 +176,7 @@ const RegisterPage = () => {
               >
                 zarejestruj
               </button>
+              {isLoading && <ClipLoader color="rgba(157, 23, 77, 1)" />}
               <a
                 href="/"
                 className="flex items-center align-baseline font-bold text-m text-pink-500 hover:text-pink-800 "
