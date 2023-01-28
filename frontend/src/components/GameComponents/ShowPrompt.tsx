@@ -16,8 +16,8 @@ const ShowPrompt = () => {
     dispatch(setShow(payload));
   };
   return (
-    <div className="w-full flex justify-around items-center ">
-      <div className="flex text-3xl">
+    <div className="w-full flex justify-center gap-10 items-center">
+      <div className="flex text-3xl w-1/2 justify-center bg-gray-200 border rounded-lg">
         <div>{round.prompt}</div>
         <div className="mr-2 ml-2"> : </div>
         <div>{round.howMany}</div>

@@ -82,7 +82,7 @@ const PromptEnter = () => {
               type="number"
               disabled={disablestatus}
               placeholder="ile?"
-              className="w-16 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
+              className="w-20 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
             />
             {errors.howMany && (
               <span className="text-pink-900 font-bold">

@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   time: number;
@@ -8,13 +9,8 @@ type FormValues = {
   team2: string;
 };
 
-const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
-  alert(
-    `time: ${data.time} teamSize: ${data.teamSize} team1: ${data.team1} team2: ${data.team2} `
-  );
-};
-
 const Lobby = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,6 +24,15 @@ const Lobby = () => {
       team2: "drużyna 2",
     },
   });
+
+  const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
+    alert(
+      `time: ${data.time} teamSize: ${data.teamSize} team1: ${data.team1} team2: ${data.team2} `
+    );
+    const gameIDplaceholder = "654321";
+    navigate(`/game/${gameIDplaceholder}`);
+  };
+
   return (
     <div className="flex flex-row flex-end h-screen w-screen">
       <div id="spy" className="flex h-full w-1/2" />
@@ -49,7 +54,7 @@ const Lobby = () => {
             <div className="flex justify-end w-1/2 pr-8">
               {" "}
               <a
-                href=""
+                href="/play"
                 className="flex items-center align-baseline font-bold text-m text-pink-500 hover:text-pink-800 "
               >
                 powrót
