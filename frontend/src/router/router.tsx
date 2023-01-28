@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
     element: <Friends />,
   },
   {
+    path: "/friends/:nickname",
+    element: <Profile />,
+  },
+  {
     path: "/manual",
     element: <Manual />,
   },
@@ -49,7 +53,7 @@ export const router = createBrowserRouter([
     element: <Lobby />,
   },
   {
-    path: "/profile",
+    path: "/profile/:nickname",
     element: <Profile />,
   },
 ]);

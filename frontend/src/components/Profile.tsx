@@ -3,18 +3,40 @@ import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy } from "../utils/randomSpy";
-import { gracz } from "../utils/samples";
+import { graczJa } from "../utils/samples";
+import { friends } from "../utils/samples";
+import { useNavigate, useParams } from "react-router-dom";
+
+interface Props {
+  profil: {
+    nickname: string;
+    email: string;
+  };
+}
 
 const Profile = () => {
   let spyClass = "";
 
   const handleUserData = () => {
+    const { nickname } = useParams();
+    if (nickname === "me") {
+      const gracz = graczJa;
+      return gracz;
+    }
+    if (nickname === undefined) {
+      // const gracz = {
+      //   nickname: "Nie znaleziono",
+      //   email: "",
+      // };
+      const gracz = graczJa;
+      return gracz;
+    }
+    const gracz = friends.find((friend) => friend.nickname === nickname);
     return gracz;
   };
 
   useMemo(() => {
     spyClass = randomSpy();
-    handleUserData();
   }, []);
 
   return (
@@ -26,8 +48,8 @@ const Profile = () => {
           <div className="flex justify-around">
             <FontAwesomeIcon className={spyClass} icon={faUserSecret} />
             <div>
-              <h1 className="text-7xl">{gracz.nickname}</h1>
-              <h2 className="text-5xl">{gracz.email}</h2>
+              <h1 className="text-7xl">{handleUserData()?.nickname}</h1>
+              <h2 className="text-5xl">{handleUserData()?.email}</h2>
             </div>
           </div>
         </div>

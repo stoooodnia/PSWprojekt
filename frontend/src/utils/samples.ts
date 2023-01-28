@@ -34,7 +34,27 @@ export const board = [
   ["white", "blue", "red", "white", "white"],
   ["red", "red", "white", "blue", "white"],
 ];
-export const gracz = {
-  nickname: "Gracz",
+// gracz sample
+export const graczJa = {
+  nickname: "Ja",
   email: "test@test.pl",
 };
+// friends sample
+export const friends = [
+  {
+    nickname: "Gracz1",
+    email: "gracz1@test.pl",
+  },
+  {
+    nickname: "aGracz2",
+    email: "gracz2@test.pl",
+  },
+  {
+    nickname: "bGracz3",
+    email: "gracz3test.pl",
+  },
+  {
+    nickname: "cGracz4",
+    email: "gracz4@test.pl",
+  },
+];

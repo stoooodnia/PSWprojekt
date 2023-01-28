@@ -56,7 +56,7 @@ const NavBar = () => {
             className={({ isActive }) =>
               isActive ? activeClassName : normalClassName
             }
-            to="/profile"
+            to="/profile/me"
           >
             Profil
           </NavLink>

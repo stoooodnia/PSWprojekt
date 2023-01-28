@@ -12,3 +12,14 @@ export const randomSpy = () => {
   const x = randomInt();
   return spyArray[x];
 };
+
+export const randomSpy2 = () => {
+  const spyArray = [
+    "text-pink-900 text-3xl",
+    "text-pink-500 text-3xl",
+    "text-myBlack text-3xl",
+    "text-gray-500 text-3xl",
+  ];
+  const x = randomInt();
+  return spyArray[x];
+};
