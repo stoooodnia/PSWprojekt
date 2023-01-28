@@ -8,9 +8,65 @@
 * {
   margin: 0px;
   padding: 0px;
+}
+
+body,
+html {
+  width: 100vw;
+  height: 100vh;
   box-sizing: border-box;
 }
 
-body {
-  background: url("./assets/images/spy.jpg") no-repeat left;
-} /*# sourceMappingURL=index.css.map */
+#spy {
+  background: url("./assets/images/spy.jpg") no-repeat left -50px;
+}
+
+@-webkit-keyframes eye-movement {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(0%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(50%) rotate(90deg);
+  }
+  75% {
+    transform: translateX(0%) rotate(135deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(180deg);
+  }
+}
+
+@keyframes eye-movement {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(0%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(50%) rotate(90deg);
+  }
+  75% {
+    transform: translateX(0%) rotate(135deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(180deg);
+  }
+}
+.eye {
+  background-color: white;
+  height: 10px;
+  width: 10px;
+  margin-left: 10px;
+  margin-bottom: 110px;
+  border: 1px solid white;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: eye-movement 2s ease-in-out infinite;
+          animation: eye-movement 2s ease-in-out infinite;
+}/*# sourceMappingURL=index.css.map */

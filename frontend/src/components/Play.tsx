@@ -37,7 +37,13 @@ const Play = () => {
 
   return (
     <div className="flex flex-row h-screen w-screen">
-      <div id="spy" className="flex h-full w-1/2" />
+      <div
+        id="spy"
+        className="flex h-full w-1/2 items-center justify-center gap-24 text-white"
+      >
+        <div className="eye">.</div>
+        <div className="eye">.</div>
+      </div>
       <div className="flex flex-col w-1/2 h-full">
         <NavBar />
         <div className="flex flex-col items-center gap-4">

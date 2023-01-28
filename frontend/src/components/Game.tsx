@@ -19,6 +19,7 @@ const Game = () => {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 600);
   const isLeader = false;
+
   return (
     <div id="main" className="bg-white flex h-full w-full">
       <div id="left" className="w-3/4 flex flex-col">
