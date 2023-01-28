@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
 import { selectTile, deselectTile } from "../../redux/tilesSlice";
 
 interface Props {
@@ -13,8 +12,7 @@ const Tile = ({ tkey, bgcolor, word }: Props) => {
   const selectedTiles = useAppSelector((state) => state.tile.selectedTiles);
   const isSelected = selectedTiles[tkey];
   const dispatch = useAppDispatch();
-  const show = true;
-  const hoverHandler = () => {};
+  const show = useAppSelector((state) => state.round.show);
   const clickHandler = () => {
     // if (!clicked) {
     //   setChosen([...chosen, tkey]);
@@ -36,7 +34,7 @@ const Tile = ({ tkey, bgcolor, word }: Props) => {
       onClick={() => clickHandler()}
       className="border-2 rounded-xl border-myBlack w-44 h-24 m-2 text-xl font-medium flex items-center justify-center"
       style={{
-        backgroundColor: show ? bgcolor : "white",
+        backgroundColor: show && isSelected ? bgcolor : "white",
         color: show && bgcolor === "black" ? "white" : "black",
         border: isSelected ? "7px solid black" : "",
       }}

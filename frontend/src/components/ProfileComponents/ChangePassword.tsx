@@ -9,3 +9,5 @@ import { ClipLoader } from "react-spinners";
 
 const changePassword = () => {};
 export default changePassword;
+
+// TODO in version 2

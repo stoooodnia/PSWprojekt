@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   id: string;
@@ -17,6 +18,7 @@ const gameSchema = yup.object().shape({
 });
 
 const Play = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,6 +32,7 @@ const Play = () => {
 
   const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
     alert(`id: ${data.id}`);
+    navigate(`/game/${data.id}`);
   };
 
   return (

@@ -4,19 +4,27 @@ import Teams from "./GameComponents/Teams";
 import Chat from "./GameComponents/Chat";
 import Score from "./GameComponents/Score";
 import Timer from "./GameComponents/Timer";
-import Word from "./GameComponents/Word";
 import BoardColorsLayout from "./GameComponents/BoardColorsLayout";
+import PromptEnter from "./GameComponents/PromptEnter";
+import ShowPrompt from "./GameComponents/ShowPrompt";
+import { useAppSelector } from "../redux/hooks";
+
+const gameExecuter = () => {
+  const selectedTiles = useAppSelector((state) => state.tile.selectedTiles);
+  const round = useAppSelector((state) => state.round);
+  const team = useAppSelector((state) => state.round.team);
+};
 
 const Game = () => {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 600);
-
+  const isLeader = false;
   return (
     <div id="main" className="bg-white flex h-full w-full">
       <div id="left" className="w-3/4 flex flex-col">
-        <div id="topleft" className="h-1/12">
+        <div id="topleft" className="h-1/12 flex">
           <Timer expiryTimestamp={time} timerControlArg={"start"} />
-          <Word />
+          {isLeader ? <PromptEnter /> : <ShowPrompt />}
         </div>
         <div id="tiles" className="w-full h-full ">
           <BoardInfo />
@@ -26,10 +34,7 @@ const Game = () => {
         <Score />
         <Teams />
         <Chat />
-        {
-          //TODO: if gracz !== leader, then dont show BoardColorsLayout
-        }
-        <BoardColorsLayout />
+        {isLeader ? <BoardColorsLayout /> : <></>}
       </div>
     </div>
   );
