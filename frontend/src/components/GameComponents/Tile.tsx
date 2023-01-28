@@ -35,7 +35,7 @@ const Tile = ({ tkey, bgcolor, word }: Props) => {
       className="border-2 rounded-xl border-myBlack w-44 h-24 m-2 text-xl font-medium flex items-center justify-center"
       style={{
         backgroundColor: show && isSelected ? bgcolor : "white",
-        color: show && bgcolor === "black" ? "white" : "black",
+        color: show && isSelected && bgcolor === "black" ? "white" : "black",
         border: isSelected ? "7px solid black" : "",
       }}
     >
