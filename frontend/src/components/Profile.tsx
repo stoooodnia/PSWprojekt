@@ -14,34 +14,41 @@ interface Props {
   };
 }
 
+type User = {
+  nickname: string;
+  email: string;
+};
+
 const Profile = () => {
   let spyClass = "";
 
-  const handleUserData = () => {
+  // TODO - ustawienie routingu z serwera, bo narazie to placeholder
+  // CRUD 4 - Get profile of user
+  function getUser<TResponse>(path: string): Promise<TResponse> {
+    return fetch(`http://localhost:1337/profile/${path}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => data as TResponse);
+  }
+
+  const handleUserData = async () => {
     const { nickname } = useParams();
     if (nickname === "me") {
-      // CRUD 4 - Get my profile "me"
-      // TODO - ustawienie routingu z serwera, bo narazie to placeholder
       const loggedUser = graczJa;
-      fetch(`http://localhost:3000/profile/${loggedUser}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((res) => console.log(res));
-      return loggedUser;
+      const gracz = await getUser<User>(loggedUser.nickname).then(
+        (then) => then
+      );
+      return gracz;
     }
-    // if (nickname === undefined) {
-    //   const gracz = {
-    //     nickname: "Nie znaleziono",
-    //     email: "",
-    //   };
-    //   // const gracz = graczJa;
-    //   return gracz;
-    // }
-    // TODO - adjust this function for clearness and functionality
-    const gracz = friends.find((friend) => friend.nickname === nickname);
+    const gracz = await getUser<User>(nickname as string).then((data) => data);
     return gracz;
+    // TODO - napraw te funkcje wyszukiwania znajomych bo jest straszna
+    // const gracz = friends.find((friend) => friend.nickname === nickname);
+    // useEffect useState to trzeba tak użyć :DD
   };
 
   useMemo(() => {

@@ -68,5 +68,5 @@ html {
   justify-content: center;
   align-items: center;
   -webkit-animation: eye-movement 2s ease-in-out infinite;
-          animation: eye-movement 2s ease-in-out infinite;
-}/*# sourceMappingURL=index.css.map */
+  animation: eye-movement 2s ease-in-out infinite;
+} /*# sourceMappingURL=index.css.map */
