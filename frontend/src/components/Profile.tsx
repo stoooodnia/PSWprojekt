@@ -20,17 +20,26 @@ const Profile = () => {
   const handleUserData = () => {
     const { nickname } = useParams();
     if (nickname === "me") {
-      const gracz = graczJa;
-      return gracz;
+      // CRUD 4 - Get my profile "me"
+      // TODO - ustawienie routingu z serwera, bo narazie to placeholder
+      const loggedUser = graczJa;
+      fetch(`http://localhost:3000/profile/${loggedUser}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) => console.log(res));
+      return loggedUser;
     }
-    if (nickname === undefined) {
-      // const gracz = {
-      //   nickname: "Nie znaleziono",
-      //   email: "",
-      // };
-      const gracz = graczJa;
-      return gracz;
-    }
+    // if (nickname === undefined) {
+    //   const gracz = {
+    //     nickname: "Nie znaleziono",
+    //     email: "",
+    //   };
+    //   // const gracz = graczJa;
+    //   return gracz;
+    // }
+    // TODO - adjust this function for clearness and functionality
     const gracz = friends.find((friend) => friend.nickname === nickname);
     return gracz;
   };

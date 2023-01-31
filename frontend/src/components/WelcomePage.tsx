@@ -41,6 +41,7 @@ const WelcomePage = () => {
     const password = CryptoJS.SHA256(data.password).toString();
 
     setTimeout(() => {
+      // CRUD 2 - Login
       fetch("http://localhost:1337/api/sessions", {
         method: "POST",
         headers: {

@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 
 const CheckConnections = () => {
   useLayoutEffect(() => {
+    // CRUD 0 - Check connection
     fetch("http://localhost:1337/healthcheck", {
       method: "GET",
       headers: {
