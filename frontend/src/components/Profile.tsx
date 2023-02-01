@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
@@ -19,41 +19,53 @@ type User = {
   email: string;
 };
 
-const Profile = () => {
-  let spyClass = "";
+// TODO - ładowanie danych zalogowanego użytkownika z ciasteczek.
+const getLoggedUserData = (): User => {
+  return graczJa;
+};
 
+const Profile = () => {
+  const [Profil, setProfil] = useState<User>({} as User);
+  let spyClass = "";
   // TODO - ustawienie routingu z serwera, bo narazie to placeholder
-  // CRUD 4 - Get profile of user
-  function getUser<TResponse>(path: string): Promise<TResponse> {
-    return fetch(`http://localhost:1337/profile/${path}`, {
+  // CRUD 3 - GET - Get profile of logged user, or another user
+  const { nickname } = useParams();
+  useEffect(() => {
+    const loggedUser = getLoggedUserData();
+    if (nickname === "me") {
+      fetch(`http://localhost:1337/profile/${loggedUser.nickname}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setProfil(data);
+        });
+    }
+    fetch(`http://localhost:1337/profile/${nickname}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((data) => data as TResponse);
-  }
-
-  const handleUserData = async () => {
-    const { nickname } = useParams();
-    if (nickname === "me") {
-      const loggedUser = graczJa;
-      const gracz = await getUser<User>(loggedUser.nickname).then(
-        (then) => then
-      );
-      return gracz;
-    }
-    const gracz = await getUser<User>(nickname as string).then((data) => data);
-    return gracz;
-    // TODO - napraw te funkcje wyszukiwania znajomych bo jest straszna
-    // const gracz = friends.find((friend) => friend.nickname === nickname);
-    // useEffect useState to trzeba tak użyć :DD
-  };
+      .then((data) => {
+        setProfil(data);
+      })
+      .catch((err) => {
+        console.log("nie znaleziono użytkownika");
+        setProfil({
+          nickname: "???",
+          email: "Nie znaleziono",
+        });
+      });
+  }, []);
 
   useMemo(() => {
     spyClass = randomSpy();
-  }, []);
+  }, [Profil]);
 
   return (
     <div className="flex flex-row h-screen w-screen">
@@ -70,8 +82,8 @@ const Profile = () => {
           <div className="flex justify-around">
             <FontAwesomeIcon className={spyClass} icon={faUserSecret} />
             <div>
-              <h1 className="text-7xl">{handleUserData()?.nickname}</h1>
-              <h2 className="text-5xl">{handleUserData()?.email}</h2>
+              <h1 className="text-7xl">{Profil.nickname}</h1>
+              <h2 className="text-5xl">{Profil.email}</h2>
             </div>
           </div>
         </div>

@@ -64,7 +64,7 @@ const RegisterPage = () => {
     const passwordConfirmation = CryptoJS.SHA256(
       data.passwordConfirmation
     ).toString();
-    // CRUD 1 - Register user
+    // CRUD 1 - POST -  Register user
     fetch("http://localhost:1337/api/users", {
       method: "POST",
       headers: {

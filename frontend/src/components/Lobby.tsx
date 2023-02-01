@@ -29,8 +29,25 @@ const Lobby = () => {
     alert(
       `time: ${data.time} teamSize: ${data.teamSize} team1: ${data.team1} team2: ${data.team2} `
     );
-    const gameIDplaceholder = "654321";
-    navigate(`/game/${gameIDplaceholder}`);
+    // CRUD 6 - POST - Create game room and start the broker
+    fetch("http://localhost:1337/api/game", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        time: data.time,
+        teamSize: data.teamSize,
+        team1: data.team1,
+        team2: data.team2,
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        response.json().then((data) => {
+          navigate(`/game/${data.id}`);
+        });
+      }
+    });
   };
 
   return (

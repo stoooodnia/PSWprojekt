@@ -61,12 +61,12 @@ html {
   height: 10px;
   width: 10px;
   margin-left: 10px;
-  margin-bottom: 110px;
+  margin-bottom: 220px;
   border: 1px solid white;
   border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   -webkit-animation: eye-movement 2s ease-in-out infinite;
-  animation: eye-movement 2s ease-in-out infinite;
-} /*# sourceMappingURL=index.css.map */
+          animation: eye-movement 2s ease-in-out infinite;
+}/*# sourceMappingURL=index.css.map */

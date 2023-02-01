@@ -15,26 +15,53 @@ interface Props {
 }
 
 const Friends = () => {
-  const getFriends = () => {
-    //  TODO fetch friends from server
-    return friends;
-  };
-
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredFriends, setFilteredFriends] = useState(friends);
   const searchInput = useRef<HTMLInputElement>(null);
-
+  const [Friends, setFriends] = useState(friends);
   useEffect(() => {
-    const handleSearch = () => {
-      setFilteredFriends(
-        friends.filter((friend) =>
-          friend.nickname.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-    };
+    // TODO fetch friends from server
+    // CRUD 5 - GET - Get friends of logged user
+    if (searchTerm === "") {
+      fetch("http://localhost:1337/friends", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setFriends(data);
+        });
+    }
+    fetch(`http://localhost:1337/friends/${searchTerm}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setFriends(data);
+      });
+  }, [searchTerm]);
+  // const getFriends = () => {
+  //   //  TODO fetch friends from server
+  //   return friends;
+  // };
 
-    handleSearch();
-  }, [searchTerm, friends]);
+  // const [Friends, setFriends] = useState(friends);
+
+  // useEffect(() => {
+  //   const handleSearch = () => {
+  //     setFriends(
+  //       friends.filter((friend) =>
+  //         friend.nickname.toLowerCase().includes(searchTerm.toLowerCase())
+  //       )
+  //     );
+  //   };
+
+  //   handleSearch();
+  // }, [searchTerm, friends]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -62,7 +89,7 @@ const Friends = () => {
               className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
             />
             <ul className="flex flex-col gap-1 text-xl">
-              {filteredFriends.map((friend, i) => (
+              {Friends.map((friend, i) => (
                 <li key={i} className="flex gap-2">
                   <a
                     className="hover:text-2xl"
