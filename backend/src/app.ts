@@ -4,7 +4,7 @@ dotenv.config();
 import config from "config";
 import connect from "./utils/connect";
 import logger from "./utils/logger";
-import routes from "./routes/routes";
+import routes from "./routes";
 import deserializeUser from "./middleware/deserializeUser";
 import cors from "cors";
 

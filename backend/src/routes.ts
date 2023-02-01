@@ -1,14 +1,14 @@
 import { Express, Request, Response } from "express";
-import { createUserSchema } from "../schema/user.schema";
-import { createUserHandler } from "../controller/user.controller";
-import validateResource from "../middleware/validateResource";
+import { createUserSchema } from "./schema/user.schema";
+import { createUserHandler } from "./controller/user.controller";
+import validateResource from "./middleware/validateResource";
 import {
   createUserSessionHandler,
   getUserSessionsHandler,
   deleteSessionHandler,
-} from "../controller/session.controler";
-import requireUser from "../middleware/requireUser";
-import { createSessionSchema } from "../schema/session.schema";
+} from "./controller/session.controler";
+import requireUser from "./middleware/requireUser";
+import { createSessionSchema } from "./schema/session.schema";
 
 function routes(app: Express) {
   // healthcheck
@@ -29,6 +29,19 @@ function routes(app: Express) {
 
   // wylogowywanie
   app.delete("/api/sessions", requireUser, deleteSessionHandler);
+
+  // tworzenie gry
+  app.get("/api/game");
+
+  // pobieranie profilu
+  app.get("/api/profile/:nickname");
+
+  // pobieranie statystyk
+  app.get("/api/stats/:nickname");
+
+  //
+
+  //
 }
 
 export default routes;

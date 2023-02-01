@@ -11,7 +11,7 @@ const Manual = () => {
         <div className="eye">.</div>
         <div className="eye">.</div>
       </div>
-      <div>
+      <div className="w-1/2">
         <NavBar />
       </div>
     </div>

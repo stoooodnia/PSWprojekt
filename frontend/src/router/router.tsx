@@ -10,6 +10,7 @@ import Friends from "../components/Friends";
 import Manual from "../components/Manual";
 import Stats from "../components/Stats";
 import Profile from "../components/Profile";
+import ChangeDetails from "../components/ChangeDetails";
 
 export const router = createBrowserRouter([
   {
@@ -55,5 +56,9 @@ export const router = createBrowserRouter([
   {
     path: "/profile/:nickname",
     element: <Profile />,
+  },
+  {
+    path: "/profile/details",
+    element: <ChangeDetails />,
   },
 ]);

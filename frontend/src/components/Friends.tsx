@@ -20,7 +20,7 @@ const Friends = () => {
   const [Friends, setFriends] = useState(friends);
   useEffect(() => {
     // TODO fetch friends from server
-    // CRUD 5 - GET - Get friends of logged user
+    // CRUD 5 - GET - Get users by nickname / WYSZUKIWANIE WZORCA
     if (searchTerm === "") {
       fetch("http://localhost:1337/friends", {
         method: "GET",
@@ -33,6 +33,7 @@ const Friends = () => {
           setFriends(data);
         });
     }
+
     fetch(`http://localhost:1337/friends/${searchTerm}`, {
       method: "GET",
       headers: {
@@ -76,7 +77,7 @@ const Friends = () => {
         <div className="eye">.</div>
         <div className="eye">.</div>
       </div>
-      <div>
+      <div className="w-1/2">
         <NavBar />
         <div>
           <div className="flex flex-col gap-4">

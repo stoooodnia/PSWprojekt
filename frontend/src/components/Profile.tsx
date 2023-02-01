@@ -25,6 +25,7 @@ const getLoggedUserData = (): User => {
 };
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [Profil, setProfil] = useState<User>({} as User);
   let spyClass = "";
   // TODO - ustawienie routingu z serwera, bo narazie to placeholder
@@ -58,7 +59,7 @@ const Profile = () => {
         console.log("nie znaleziono użytkownika");
         setProfil({
           nickname: "???",
-          email: "Nie znaleziono",
+          email: "Nie znaleziono profilu",
         });
       });
   }, []);
@@ -76,16 +77,26 @@ const Profile = () => {
         <div className="eye">.</div>
         <div className="eye">.</div>
       </div>
-      <div id="right">
+      <div id="right" className="w-1/2">
         <NavBar />
-        <div id="main">
-          <div className="flex justify-around">
+        <div id="main ">
+          <div className="flex gap-10 ml-1">
             <FontAwesomeIcon className={spyClass} icon={faUserSecret} />
             <div>
               <h1 className="text-7xl">{Profil.nickname}</h1>
               <h2 className="text-5xl">{Profil.email}</h2>
             </div>
           </div>
+          <button
+            hidden={nickname === "me" ? false : true}
+            onClick={() => {
+              navigate("/profile/details");
+            }}
+            className="mt-5 w-42 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"
+          >
+            {" "}
+            zmień dane{" "}
+          </button>
         </div>
       </div>
     </div>
