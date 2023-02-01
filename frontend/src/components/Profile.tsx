@@ -6,6 +6,7 @@ import { randomSpy } from "../utils/randomSpy";
 import { graczJa } from "../utils/samples";
 import { friends } from "../utils/samples";
 import { useNavigate, useParams } from "react-router-dom";
+import Cookie from "js-cookie";
 
 interface Props {
   profil: {
@@ -33,22 +34,24 @@ const Profile = () => {
   const { nickname } = useParams();
   useEffect(() => {
     const loggedUser = getLoggedUserData();
+    console.log(Cookie.get("accessToken"));
     if (nickname === "me") {
       fetch(`http://localhost:1337/profile/${loggedUser.nickname}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer" + Cookie.get("accessToken"),
         },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setProfil(data);
-        });
+      }).then((res) => console.log(res));
+      // .then((data) => {
+      //   setProfil(data);
+      // });
     }
     fetch(`http://localhost:1337/profile/${nickname}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookie.get("accessToken")}`,
       },
     })
       .then((res) => res.json())

@@ -46,7 +46,7 @@ function routes(app: Express) {
   app.get("/api/friends");
 
   // pobieranie listy graczy ze wzorcem
-  app.get("/api/friends/:nickname");
+  app.get("/api/friends/:nickname", req);
 
   // zmiana maila
   app.put("/api/changeEmail", async (req: Request, res: Response) => {

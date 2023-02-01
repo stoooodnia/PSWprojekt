@@ -61,8 +61,8 @@ const WelcomePage = () => {
               console.log("pobrano token i zamontowano w ciasteczku");
               console.log(resData);
               setIsLoading(false);
-              Cookie.set("Accesstoken", resData.accessToken);
-              Cookie.set("Refreshtoken", resData.refreshToken);
+              Cookie.set("accessToken", resData.accessToken);
+              Cookie.set("refreshToken", resData.refreshToken);
               Cookie.set("User", data.email);
               navigate("/play");
             });
