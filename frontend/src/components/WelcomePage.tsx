@@ -4,6 +4,8 @@ import CryptoJS from "crypto-js";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ClipLoader } from "react-spinners";
+import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   email: string;
@@ -21,6 +23,7 @@ const loginSchema = yup.object().shape({
 const WelcomePage = () => {
   //loading state
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -54,9 +57,14 @@ const WelcomePage = () => {
       })
         .then((response) => {
           if (response.status === 200) {
-            response.json().then((data) => {
-              console.log(data);
+            response.json().then((resData) => {
+              console.log("pobrano token i zamontowano w ciasteczku");
+              console.log(resData);
               setIsLoading(false);
+              Cookie.set("Accesstoken", resData.accessToken);
+              Cookie.set("Refreshtoken", resData.refreshToken);
+              Cookie.set("User", data.email);
+              navigate("/play");
             });
             setIsLoading(false);
           }
