@@ -73,6 +73,7 @@ function routes(app: Express) {
 
   // pobieranie listy graczy ze wzorcem
   app.get("/api/friends/:nickname", async (req: Request, res: Response) => {
+    console.log(req.params.nickname);
     const { pattern } = req.params;
 
     try {

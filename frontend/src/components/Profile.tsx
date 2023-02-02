@@ -36,22 +36,23 @@ const Profile = () => {
     const loggedUser = getLoggedUserData();
     // console.log(Cookie.get("accessToken"));
     if (nickname === "me") {
-      fetch(`http://localhost:1337/profile/${loggedUser.nickname}`, {
+      fetch(`http://localhost:1337/api/profile/${loggedUser.nickname}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: Cookie.get("accessToken") as string,
         },
-      }).then((res) => console.log(res));
-      // .then((data) => {
-      //   setProfil(data);
-      // });
+      })
+        .then((res) => res.json())
+        .then((resData) => {
+          setProfil(resData.user);
+        });
     } else {
-      fetch(`http://localhost:1337/profile/${nickname}`, {
+      fetch(`http://localhost:1337/api/profile/${nickname}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${Cookie.get("accessToken")}`,
+          Authorization: Cookie.get("accessToken") as string,
         },
       })
         .then((res) => res.json())
@@ -66,6 +67,7 @@ const Profile = () => {
           });
         });
     }
+    console.log(Profil);
   }, []);
 
   useMemo(() => {
@@ -105,7 +107,7 @@ const Profile = () => {
             hidden={nickname === "me" ? false : true}
             onClick={() => {
               // CRUD 10 - DELETE - Delete profile
-              fetch(`http://localhost:1337/profile/${Profil.email}`, {
+              fetch(`http://localhost:1337/api/profile/${Profil.email}`, {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",
