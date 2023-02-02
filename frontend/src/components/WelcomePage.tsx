@@ -75,7 +75,9 @@ const WelcomePage = () => {
               }).then((response) => {
                 if (response.status === 200) {
                   response.json().then((resData) => {
-                    Cookie.set("userLogged", resData.user);
+                    Cookie.set("userLoggedId", resData.user._id);
+                    Cookie.set("userLoggedEmail", resData.user.email);
+                    Cookie.set("userLoggedNickname", resData.user.nickname);
                     console.log("pobrano usera i zamontowano w ciasteczku");
                   });
                 }

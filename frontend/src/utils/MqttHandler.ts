@@ -6,7 +6,7 @@ export const Client = mqtt.connect("ws://127.0.0.1", {
 
 export const MqttConnection = () => {
   Client.on("connect", () => {
-    console.log("Connected");
+    console.log("Connected to mqtt over websockets!!");
     Client.subscribe("test", (err) => {
       if (!err) {
         Client.publish("test", "Hello mqtt");

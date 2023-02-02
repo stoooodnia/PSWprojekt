@@ -27,11 +27,11 @@ const Chat = () => {
 
   const getSender = () => {
     if (
-      Cookies.get("userLogged") !== undefined &&
-      Cookies.get("userLogged")?.length
+      Cookies.get("userLoggedNickname") !== undefined &&
+      Cookies.get("userLoggedNickname")?.length
     ) {
-      const user = Cookies.get("userLogged");
-      console.log(...user);
+      const user = Cookies.get("userLoggedNickname");
+
       return user;
     } else {
       return "Anonim";

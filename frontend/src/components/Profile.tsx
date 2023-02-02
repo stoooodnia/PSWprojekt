@@ -3,17 +3,8 @@ import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy } from "../utils/randomSpy";
-import { graczJa } from "../utils/samples";
-import { friends } from "../utils/samples";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookie from "js-cookie";
-
-interface Props {
-  profil: {
-    nickname: string;
-    email: string;
-  };
-}
 
 type User = {
   nickname: string;
@@ -21,22 +12,22 @@ type User = {
 };
 
 // TODO - ładowanie danych zalogowanego użytkownika z ciasteczek.
-const getLoggedUserData = (): User => {
-  return graczJa;
+const getLoggedUserData = (): string => {
+  const id = Cookie.get("userLoggedId");
+  return id as string;
 };
 
 const Profile = () => {
   const navigate = useNavigate();
   const [Profil, setProfil] = useState<User>({} as User);
   let spyClass = "";
-  // TODO - ustawienie routingu z serwera, bo narazie to placeholder
   // CRUD 3 - GET - Get profile of logged user, or another user
-  const { nickname } = useParams();
+  const { id } = useParams();
   useEffect(() => {
     const loggedUser = getLoggedUserData();
-    // console.log(Cookie.get("accessToken"));
-    if (nickname === "me") {
-      fetch(`http://localhost:1337/api/profile/${loggedUser.nickname}`, {
+    if (id === "me") {
+      console.log(loggedUser);
+      fetch(`http://localhost:1337/api/profile/${loggedUser}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +39,7 @@ const Profile = () => {
           setProfil(resData.user);
         });
     } else {
-      fetch(`http://localhost:1337/api/profile/${nickname}`, {
+      fetch(`http://localhost:1337/api/profile/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +58,6 @@ const Profile = () => {
           });
         });
     }
-    console.log(Profil);
   }, []);
 
   useMemo(() => {
@@ -94,7 +84,7 @@ const Profile = () => {
             </div>
           </div>
           <button
-            hidden={nickname === "me" ? false : true}
+            hidden={id === "me" ? false : true}
             onClick={() => {
               navigate("/profile/details");
             }}
@@ -104,7 +94,7 @@ const Profile = () => {
             zmień dane{" "}
           </button>
           <button
-            hidden={nickname === "me" ? false : true}
+            hidden={id === "me" ? false : true}
             onClick={() => {
               // CRUD 10 - DELETE - Delete profile
               fetch(`http://localhost:1337/api/profile/${Profil.email}`, {

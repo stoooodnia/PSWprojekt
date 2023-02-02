@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
     element: <Friends />,
   },
   {
-    path: "/friends/:nickname",
+    path: "/friends/:id",
     element: <Profile />,
   },
   {
@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
     element: <Lobby />,
   },
   {
-    path: "/profile/:nickname",
+    path: "/profile/:id",
     element: <Profile />,
   },
   {

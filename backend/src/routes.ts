@@ -14,7 +14,7 @@ import { changeNickname } from "./service/changeNickname.service";
 import { changeEmail } from "./service/changeEmail.service";
 import { findUsers } from "./service/findUsers.service";
 import { findUsersRegex } from "./service/findUsersRegex.service";
-import { getUserByNickname } from "./service/getUserByNickname.service";
+import { getUserById } from "./service/getUserById.service";
 import { getUserByEmail } from "./service/getUserByEmail.service";
 
 function routes(app: Express) {
@@ -54,10 +54,10 @@ function routes(app: Express) {
   app.get("/api/game");
 
   // pobieranie profilu
-  app.get("/api/profile/:nickname", async (req: Request, res: Response) => {
-    const { nickname } = req.params;
+  app.get("/api/profile/:id", async (req: Request, res: Response) => {
+    const id = req.params.id;
     try {
-      const user = await getUserByNickname(nickname);
+      const user = await getUserById(id);
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }
@@ -87,9 +87,7 @@ function routes(app: Express) {
 
   // pobieranie listy graczy ze wzorcem
   app.get("/api/friends/:nickname", async (req: Request, res: Response) => {
-    console.log(req.params.nickname);
-    const { pattern } = req.params;
-
+    const pattern = req.params.nickname;
     try {
       const users = await findUsersRegex(pattern);
       if (!users) {

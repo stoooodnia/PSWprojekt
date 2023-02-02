@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import NavBar from "./NavBar";
-import { friends } from "../utils/samples";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy2 } from "../utils/randomSpy";
@@ -17,12 +16,12 @@ interface Props {
 const Friends = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchInput = useRef<HTMLInputElement>(null);
-  const [Friends, setFriends] = useState(friends);
+  const [Friends, setFriends] = useState([] as any[]);
   useEffect(() => {
     // TODO fetch friends from server
     // CRUD 5 - GET - Get friends / WYSZUKIWANIE WZORCA
     if (searchTerm === "") {
-      fetch("http://localhost:1337/friends", {
+      fetch("http://localhost:1337/api/friends", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -30,19 +29,20 @@ const Friends = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setFriends(data);
+          setFriends(data.users);
+        });
+    } else {
+      fetch(`http://localhost:1337/api/friends/${searchTerm}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setFriends(data.users);
         });
     }
-    fetch(`http://localhost:1337/friends/${searchTerm}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setFriends(data);
-      });
   }, [searchTerm]);
   // const getFriends = () => {
   //   //  TODO fetch friends from server
@@ -91,10 +91,7 @@ const Friends = () => {
             <ul className="flex flex-col gap-1 text-xl">
               {Friends.map((friend, i) => (
                 <li key={i} className="flex gap-2">
-                  <a
-                    className="hover:text-2xl"
-                    href={`friends/${friend.nickname}`}
-                  >
+                  <a className="hover:text-2xl" href={`friends/${friend._id}`}>
                     <FontAwesomeIcon
                       className={randomSpy2()}
                       icon={faUserSecret}
