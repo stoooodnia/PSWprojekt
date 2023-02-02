@@ -63,7 +63,23 @@ const WelcomePage = () => {
               Cookie.set("accessToken", resData.accessToken);
               Cookie.set("refreshToken", resData.refreshToken);
               console.log("pobrano token i zamontowano w ciasteczku");
-              Cookie.set("User", data.email);
+              fetch("http://localhost:1337/api/profile/me", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: resData.accessToken as string,
+                },
+                body: JSON.stringify({
+                  email: data.email,
+                }),
+              }).then((response) => {
+                if (response.status === 200) {
+                  response.json().then((resData) => {
+                    Cookie.set("userLogged", resData.user);
+                    console.log("pobrano usera i zamontowano w ciasteczku");
+                  });
+                }
+              });
               navigate("/play");
             });
             setIsLoading(false);

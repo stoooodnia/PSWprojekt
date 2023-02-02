@@ -17,7 +17,6 @@ const Chat = () => {
   };
 
   const getSender = () => {
-    //TODO get sender from server
     return "gracz1";
   };
 
