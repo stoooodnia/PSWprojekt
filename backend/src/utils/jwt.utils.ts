@@ -21,14 +21,12 @@ export function verifyJwt(
   token: string,
   keyName: "accessTokenPublicKey" | "refreshTokenPublicKey"
 ) {
-  console.log({ token });
   const publicKey = Buffer.from(config.get<string>(keyName), "base64").toString(
     "ascii"
   );
 
   try {
-    const decoded = jwt.verify(token, publicKey);
-
+    const decoded = jwt.verify(token, publicKey, { complete: true });
     return {
       valid: true,
       expired: false,

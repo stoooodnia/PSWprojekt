@@ -34,37 +34,38 @@ const Profile = () => {
   const { nickname } = useParams();
   useEffect(() => {
     const loggedUser = getLoggedUserData();
-    console.log(Cookie.get("accessToken"));
+    // console.log(Cookie.get("accessToken"));
     if (nickname === "me") {
       fetch(`http://localhost:1337/profile/${loggedUser.nickname}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer" + Cookie.get("accessToken"),
+          Authorization: Cookie.get("accessToken") as string,
         },
       }).then((res) => console.log(res));
       // .then((data) => {
       //   setProfil(data);
       // });
-    }
-    fetch(`http://localhost:1337/profile/${nickname}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookie.get("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setProfil(data);
+    } else {
+      fetch(`http://localhost:1337/profile/${nickname}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookie.get("accessToken")}`,
+        },
       })
-      .catch((err) => {
-        console.log("nie znaleziono użytkownika");
-        setProfil({
-          nickname: "???",
-          email: "Nie znaleziono profilu",
+        .then((res) => res.json())
+        .then((data) => {
+          setProfil(data);
+        })
+        .catch((err) => {
+          console.log("nie znaleziono użytkownika");
+          setProfil({
+            nickname: "???",
+            email: "Nie znaleziono profilu",
+          });
         });
-      });
+    }
   }, []);
 
   useMemo(() => {
@@ -99,6 +100,27 @@ const Profile = () => {
           >
             {" "}
             zmień dane{" "}
+          </button>
+          <button
+            hidden={nickname === "me" ? false : true}
+            onClick={() => {
+              // CRUD 10 - DELETE - Delete profile
+              fetch(`http://localhost:1337/profile/${Profil.email}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${Cookie.get("accessToken")}`,
+                },
+              }).then((res) => console.log(res));
+              Cookie.remove("accessToken");
+              Cookie.remove("refreshToken");
+              Cookie.remove("user");
+              alert("profil usunięto pomyślnie");
+              navigate("/");
+            }}
+            className="ml-5 mt-5 w-42 bg-white hover:bg-gray-100 text-pink-500 hover:text-pink-800 font-semibold py-2 px-4 border rounded shadow"
+          >
+            usuń profil
           </button>
         </div>
       </div>

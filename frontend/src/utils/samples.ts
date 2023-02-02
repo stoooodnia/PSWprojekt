@@ -36,8 +36,8 @@ export const board = [
 ];
 // gracz sample
 export const graczJa = {
-  nickname: "Ja",
-  email: "test@test.pl",
+  nickname: "123",
+  email: "t@test.pl",
 };
 // friends sample
 export const friends = [

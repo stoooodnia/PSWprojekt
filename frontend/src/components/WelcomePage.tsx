@@ -58,11 +58,11 @@ const WelcomePage = () => {
         .then((response) => {
           if (response.status === 200) {
             response.json().then((resData) => {
-              console.log("pobrano token i zamontowano w ciasteczku");
               console.log(resData);
               setIsLoading(false);
               Cookie.set("accessToken", resData.accessToken);
               Cookie.set("refreshToken", resData.refreshToken);
+              console.log("pobrano token i zamontowano w ciasteczku");
               Cookie.set("User", data.email);
               navigate("/play");
             });

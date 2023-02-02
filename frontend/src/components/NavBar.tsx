@@ -61,6 +61,17 @@ const NavBar = () => {
             Profil
           </NavLink>
         </li>
+        <li id="/logout" className="mr-1">
+          <NavLink
+            className=" bg-white inline-block rounded-t py-2 px-4 font-semibold text-pink-500 hover:text-pink-800"
+            to="/"
+            onClick={() => {
+              console.log("wylogowano");
+            }}
+          >
+            Wyloguj
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

@@ -12,6 +12,9 @@ import { createSessionSchema } from "./schema/session.schema";
 import { changePassword } from "./service/changePassword.service";
 import { changeNickname } from "./service/changeNickname.service";
 import { changeEmail } from "./service/changeEmail.service";
+import { findUsers } from "./service/findUsers.service";
+import { findUsersRegex } from "./service/findUsersRegex.service";
+import { getUserByNickname } from "./service/getUserByNickname.service";
 
 function routes(app: Express) {
   // healthcheck
@@ -37,16 +40,52 @@ function routes(app: Express) {
   app.get("/api/game");
 
   // pobieranie profilu
-  app.get("/api/profile/:nickname");
+  app.get("/api/profile/:nickname", async (req: Request, res: Response) => {
+    const { nickname } = req.params;
+    try {
+      const user = await getUserByNickname(nickname);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      return res.status(200).json({ user });
+    } catch (error) {
+      return res.status(500).json({ error: "Server error" });
+    }
+  });
 
   // pobieranie statystyk
   app.get("/api/stats/:nickname");
 
   // pobieranie listy graczy bez wzorca
-  app.get("/api/friends");
+  app.get("/api/friends", async (req: Request, res: Response) => {
+    try {
+      const users = await findUsers();
+      if (!users) {
+        return res.status(404).json({ error: "Users not found" });
+      }
+
+      return res.status(200).json({ users });
+    } catch (error) {
+      return res.status(500).json({ error: "Server error" });
+    }
+  });
 
   // pobieranie listy graczy ze wzorcem
-  app.get("/api/friends/:nickname", req);
+  app.get("/api/friends/:nickname", async (req: Request, res: Response) => {
+    const { pattern } = req.params;
+
+    try {
+      const users = await findUsersRegex(pattern);
+      if (!users) {
+        return res.status(404).json({ error: "Users not found" });
+      }
+
+      return res.status(200).json({ users });
+    } catch (error) {
+      return res.status(500).json({ error: "Server error" });
+    }
+  });
 
   // zmiana maila
   app.put("/api/changeEmail", async (req: Request, res: Response) => {
