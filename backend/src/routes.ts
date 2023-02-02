@@ -102,10 +102,11 @@ function routes(app: Express) {
 
   // zmiana maila
   app.put("/api/changeEmail", async (req: Request, res: Response) => {
-    const { userId, newEmail } = req.body;
+    console.log(req.body);
+    const { id, newemail } = req.body;
 
     try {
-      const user = await changeEmail(req, userId, newEmail);
+      const user = await changeEmail(id, newemail);
       if (!user) {
         return res.status(404).send({ error: "User not found" });
       }
@@ -118,10 +119,10 @@ function routes(app: Express) {
 
   // zmiana nicku
   app.put("/api/changeNickname", async (req: Request, res: Response) => {
-    const { email, newNickname } = req.body;
+    const { id, newNickname } = req.body;
 
     try {
-      const user = await changeNickname(req, email, newNickname);
+      const user = await changeNickname(id, newNickname);
       if (!user) {
         return res.status(404).send({ error: "User not found" });
       }
@@ -135,10 +136,10 @@ function routes(app: Express) {
   // zmiana hasła
   app.put("/api/changePassword", async (req: Request, res: Response) => {
     {
-      const { email, newPassword } = req.body;
+      const { id, newPassword } = req.body;
 
       try {
-        const user = await changePassword(req, email, newPassword);
+        const user = await changePassword(id, newPassword);
         if (!user) {
           return res.status(404).send({ error: "User not found" });
         }

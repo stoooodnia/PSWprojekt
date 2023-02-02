@@ -4,7 +4,7 @@ import * as yup from "yup";
 import CryptoJS from "crypto-js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordStrengthBar from "react-password-strength-bar";
-import { graczJa } from "../../utils/samples";
+import Cookie from "js-cookie";
 
 type FormValues = {
   password: string;
@@ -18,7 +18,7 @@ const registerSchema = yup.object().shape({
 
 // TODO: Get user form cookie
 const getUser = () => {
-  return graczJa;
+  return Cookie.get("userLoggedId");
 };
 
 const ChangePassword = () => {
@@ -48,8 +48,8 @@ const ChangePassword = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: getUser().email,
-        password: password,
+        id: getUser(),
+        newPassword: password,
         passwordConfirmation: passwordConfirmation,
       }),
     }).then((response) => {
@@ -57,7 +57,7 @@ const ChangePassword = () => {
         console.log("zmieniono hasło użytkownika!");
         setError("password", {
           type: "manual",
-          message: "Nickname został zmieniony!",
+          message: "Password zostało zmienione!",
         });
       }
     });

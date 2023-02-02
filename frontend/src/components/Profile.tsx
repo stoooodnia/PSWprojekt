@@ -26,7 +26,6 @@ const Profile = () => {
   useEffect(() => {
     const loggedUser = getLoggedUserData();
     if (id === "me") {
-      console.log(loggedUser);
       fetch(`http://localhost:1337/api/profile/${loggedUser}`, {
         method: "GET",
         headers: {
@@ -101,7 +100,7 @@ const Profile = () => {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${Cookie.get("accessToken")}`,
+                  Authorization: Cookie.get("accessToken") as string,
                 },
               }).then((res) => console.log(res));
               Cookie.remove("accessToken");

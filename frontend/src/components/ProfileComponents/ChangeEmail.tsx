@@ -3,8 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { graczJa } from "../../utils/samples";
-
+import Cookie from "js-cookie";
 type FormValues = {
   email: string;
 };
@@ -18,7 +17,7 @@ const registerSchema = yup.object().shape({
 
 // TODO: Get user form cookie
 const getUser = () => {
-  return graczJa;
+  return Cookie.get("userLoggedId");
 };
 
 const ChangeEmail = () => {
@@ -31,7 +30,7 @@ const ChangeEmail = () => {
   } = useForm<FormValues>({
     resolver: yupResolver(registerSchema),
     defaultValues: {
-      email: getUser().email,
+      email: "",
     },
   });
   const navigate = useNavigate();
@@ -45,14 +44,13 @@ const ChangeEmail = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: data.email,
+        id: getUser(),
+        newemail: data.email,
       }),
     }).then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
-          console.log(
-            "zmieniono mail użytkownika" + "\n nowyemail: " + data.email
-          );
+          console.log("zmieniono mail użytkownika");
         });
         setError("email", {
           type: "manual",

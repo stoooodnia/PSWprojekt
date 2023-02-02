@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { useNavigate } from "react-router-dom";
-import { graczJa } from "../../utils/samples";
+import Cookie from "js-cookie";
 
 type FormValues = {
   nickname: string;
@@ -20,7 +20,7 @@ const registerSchema = yup.object().shape({
 
 // TODO: Get user form cookie
 const getUser = () => {
-  return graczJa;
+  return Cookie.get("userLoggedId");
 };
 
 const ChangeNickname = () => {
@@ -32,7 +32,7 @@ const ChangeNickname = () => {
   } = useForm<FormValues>({
     resolver: yupResolver(registerSchema),
     defaultValues: {
-      nickname: getUser().nickname as string,
+      nickname: "",
     },
   });
 
@@ -45,17 +45,13 @@ const ChangeNickname = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: getUser().email,
-        nickname: data.nickname,
+        id: getUser(),
+        newNickname: data.nickname,
       }),
     }).then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
-          console.log(
-            "zmieniono nickname użytkownika" +
-              "\n nowy nickname: " +
-              data.nickname
-          );
+          console.log("zmieniono nickname użytkownika");
         });
         setError("nickname", {
           type: "manual",

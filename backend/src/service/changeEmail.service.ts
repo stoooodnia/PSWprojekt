@@ -2,17 +2,17 @@ import express, { Request, Response } from "express";
 import User, { UserInput } from "../models/user.model";
 
 export async function changeEmail(
-  req: Request,
-  email: string,
-  newEmail: string
+  id: string,
+  newemail: string
 ): Promise<UserInput | null> {
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ _id: id });
+    console.log(user);
     if (!user) {
       return null;
     }
 
-    user.email = newEmail;
+    user.email = newemail;
     return user.save();
   } catch (error) {
     throw new Error(error as string);
