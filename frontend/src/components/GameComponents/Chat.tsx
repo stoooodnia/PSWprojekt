@@ -1,23 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { MqttConnection, Client } from "../../utils/MqttHandler";
+import Cookies from "js-cookie";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type FormValues = {
+  fmessage: string;
+};
 
 const Chat = () => {
   const [messages, setMessages] = useState([] as string[]);
-  const [currentMessage, setCurrentMessage] = useState("");
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const { register, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      fmessage: "",
+    },
+  });
+  const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
     const sender = getSender();
     //auto scroll
     document
       .getElementById("messages")
       ?.scrollTo(0, document.getElementById("messages")?.scrollHeight || 0);
     //
-    setMessages([...messages, `${sender}: ${currentMessage}`]);
-    setCurrentMessage("");
+    sendMessage(`${sender}: ${data.fmessage}`);
   };
 
   const getSender = () => {
-    return "gracz1";
+    if (
+      Cookies.get("userLogged") !== undefined &&
+      Cookies.get("userLogged")?.length
+    ) {
+      const user = Cookies.get("userLogged");
+      console.log(...user);
+      return user;
+    } else {
+      return "Anonim";
+    }
+  };
+
+  if (Client.connected) {
+    Client.on("message", (topic, message) => {
+      if (topic === "Chat") {
+        setMessages([...messages, message.toString()]);
+      }
+    });
+  }
+
+  const sendMessage = (message: string) => {
+    if (Client.connected) {
+      Client.publish("Chat", message);
+    }
   };
 
   return (
@@ -31,12 +63,14 @@ const Chat = () => {
             <div key={index}>{message}</div>
           ))}
         </div>
-        <form className="w-full flex gap-4" onSubmit={handleSubmit}>
+        <form
+          className="w-full flex gap-4"
+          onSubmit={handleSubmit(formSubmitHandler)}
+        >
           <input
+            {...register("fmessage")}
             className="w-9/12 h-8 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
             type="text"
-            value={currentMessage}
-            onChange={(event) => setCurrentMessage(event.target.value)}
           />
           <button
             className="h-8 text-center w-1/6 font-semibold border-2 border-myBlack rounded-lg"

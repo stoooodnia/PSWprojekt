@@ -8,6 +8,9 @@ import BoardColorsLayout from "./GameComponents/BoardColorsLayout";
 import PromptEnter from "./GameComponents/PromptEnter";
 import ShowPrompt from "./GameComponents/ShowPrompt";
 import { useAppSelector } from "../redux/hooks";
+import { MqttConnection } from "../utils/MqttHandler";
+
+MqttConnection();
 
 const gameExecuter = () => {
   const selectedTiles = useAppSelector((state) => state.tile.selectedTiles);

@@ -1,10 +1,10 @@
-import mqtt from "mqtt";
+import * as mqtt from "mqtt";
 
-const Client = mqtt.connect("ws://127.0.0.1", {
+export const Client = mqtt.connect("ws://127.0.0.1", {
   port: 8081,
 });
 
-export const MqttConnectiion = () => {
+export const MqttConnection = () => {
   Client.on("connect", () => {
     console.log("Connected");
     Client.subscribe("test", (err) => {
@@ -12,5 +12,6 @@ export const MqttConnectiion = () => {
         Client.publish("test", "Hello mqtt");
       }
     });
+    Client.subscribe("Chat");
   });
 };
