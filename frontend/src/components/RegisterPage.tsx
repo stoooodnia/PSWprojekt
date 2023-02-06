@@ -77,7 +77,7 @@ const RegisterPage = () => {
         nickname: data.nickname,
       }),
     }).then((response) => {
-      if (response.status === 200) {
+      if (response.status === 201) {
         response.json().then((data) => {
           console.log(
             "zarejstrowano użytkownika " +
@@ -95,10 +95,23 @@ const RegisterPage = () => {
       }
       if (response.status === 409) {
         setTimeout(() => {
-          setError("email", {
-            type: "manual",
-            message: "Użytkownik o podanym adresie email już istnieje!",
+          response.json().then((data) => {
+            console.log(data);
+            const { message, field } = data.error;
+            if (field === "email") {
+              setError("email", {
+                type: "manual",
+                message: "Email już istnieje!",
+              });
+            }
+            if (field === "nickname") {
+              setError("nickname", {
+                type: "manual",
+                message: "Nick już istnieje!",
+              });
+            }
           });
+
           setIsLoading(false);
         }, 2000);
       }

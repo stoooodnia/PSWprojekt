@@ -1,3 +1,4 @@
+import { createUser } from "./db/commands/createUser";
 import { Express, Request, Response } from "express";
 
 function routes(app: Express) {
@@ -5,8 +6,21 @@ function routes(app: Express) {
   app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
 
   //rejestracja
-  app.post("/api/users", async (req: Request, res: Response) => {});
-
+  app.post("/api/users", async (req, res) => {
+    const userProfile = req.body;
+    try {
+      const newUser = await createUser(userProfile);
+      res.status(201).send({
+        message: "User created successfully",
+        data: newUser,
+      });
+    } catch (error: any) {
+      res.status(409).send({
+        message: "Failed to create user",
+        error: error,
+      });
+    }
+  });
   //logowanie
   app.post("/api/sessions");
 
@@ -43,3 +57,19 @@ function routes(app: Express) {
 }
 
 export default routes;
+
+// app.put("/api/changeEmail", async (req: Request, res: Response) => {
+//   console.log(req.body);
+//   const { id, newemail } = req.body;
+
+//   try {
+//     const user = await changeEmail(id, newemail);
+//     if (!user) {
+//       return res.status(404).send({ error: "User not found" });
+//     }
+
+//     return res.status(200).send({ message: "Email changed successfully" });
+//   } catch (error) {
+//     return res.status(500).send({ error: "Server error" });
+//   }
+// });

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { MqttConnection, Client } from "../../utils/MqttHandler";
 import Cookies from "js-cookie";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -16,40 +15,11 @@ const Chat = () => {
     },
   });
   const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
-    const sender = getSender();
     //auto scroll
     document
       .getElementById("messages")
       ?.scrollTo(0, document.getElementById("messages")?.scrollHeight || 0);
     //
-    sendMessage(`${sender}: ${data.fmessage}`);
-  };
-
-  const getSender = () => {
-    if (
-      Cookies.get("userLoggedNickname") !== undefined &&
-      Cookies.get("userLoggedNickname")?.length
-    ) {
-      const user = Cookies.get("userLoggedNickname");
-
-      return user;
-    } else {
-      return "Anonim";
-    }
-  };
-
-  if (Client.connected) {
-    Client.on("message", (topic, message) => {
-      if (topic === "Chat") {
-        setMessages([...messages, message.toString()]);
-      }
-    });
-  }
-
-  const sendMessage = (message: string) => {
-    if (Client.connected) {
-      Client.publish("Chat", message);
-    }
   };
 
   return (
