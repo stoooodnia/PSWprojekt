@@ -1,17 +1,16 @@
 import { driver } from "../../utils/connect";
-import { UserProfile } from "../../models/user.model";
 import logger from "../../utils/logger";
 
 export const deleteUser = (email: string) => {
   return new Promise((resolve, reject) => {
     const session = driver.session();
-    logger.info(email);
 
     session
-      .run("MATCH (user:User {email: $email}) DELETE user", { email: email })
+      .run("MATCH (user:User {email: $email}) DELETE user RETURN COUNT(user)", {
+        email: email,
+      })
       .then((result) => {
-        logger.debug(result);
-        if (!result.records.length) {
+        if (!result.records[0].get("COUNT(user)")) {
           reject({ error: "User not found" });
         } else {
           resolve({ message: "User successfully deleted" });

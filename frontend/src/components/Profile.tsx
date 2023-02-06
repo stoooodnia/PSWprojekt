@@ -11,12 +11,6 @@ type User = {
   email: string;
 };
 
-// TODO - ładowanie danych zalogowanego użytkownika z ciasteczek.
-const getLoggedUserData = (): string => {
-  const id = Cookie.get("userLoggedId");
-  return id as string;
-};
-
 const Profile = () => {
   const navigate = useNavigate();
   const [Profil, setProfil] = useState<User>({} as User);
@@ -24,19 +18,13 @@ const Profile = () => {
   // CRUD 3 - GET - Get profile of logged user, or another user
   const { id } = useParams();
   useEffect(() => {
-    const loggedUser = getLoggedUserData();
     if (id === "me") {
-      fetch(`http://localhost:1337/api/profile/${loggedUser}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: Cookie.get("accessToken") as string,
-        },
-      })
-        .then((res) => res.json())
-        .then((resData) => {
-          setProfil(resData.user);
-        });
+      const email = Cookie.get("userLoggedEmail");
+      const nickname = Cookie.get("userLoggedNickname");
+      setProfil({
+        nickname: nickname as string,
+        email: email as string,
+      });
     } else {
       fetch(`http://localhost:1337/api/profile/${id}`, {
         method: "GET",

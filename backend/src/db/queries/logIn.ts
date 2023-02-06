@@ -1,5 +1,4 @@
 import { driver } from "../../utils/connect";
-import { UserProfile } from "../../models/user.model";
 import logger from "../../utils/logger";
 import lodash from "lodash";
 

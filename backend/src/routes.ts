@@ -1,7 +1,9 @@
+import { getProfile } from "./db/queries/getProfile";
 import { createUser } from "./db/commands/createUser";
 import { Express, Request, Response } from "express";
 import { logIn } from "./db/queries/logIn";
 import { deleteUser } from "./db/commands/deleteUser";
+import logger from "./utils/logger";
 
 function routes(app: Express) {
   // healthcheck
@@ -38,9 +40,18 @@ function routes(app: Express) {
   });
 
   // pobieranie zalogowanego użytkownika
-  app.post("/api/profile/me", async (req: Request, res: Response) => {});
-  // pobieranie sesji
-  app.get("/api/sessions");
+  app.post("/api/profile/me", async (req: Request, res: Response) => {
+    const email = req.body.email;
+    try {
+      const user = await getProfile(email);
+      res.status(200).send({
+        message: "User found successfully",
+        data: user,
+      });
+    } catch (error: any) {
+      res.status(403).send(error);
+    }
+  });
 
   // wylogowywanie
   app.delete("/api/sessions");
@@ -51,6 +62,7 @@ function routes(app: Express) {
   // usuwanie profilu
   app.delete("/api/profile/:email", async (req: Request, res: Response) => {
     const email = req.params.email;
+    logger.info(email);
     try {
       const deletedUser = await deleteUser(email);
       res.status(200).send({
