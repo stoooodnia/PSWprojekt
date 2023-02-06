@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Cookie from "js-cookie";
 
 const NavBar = () => {
   const activeClassName =
@@ -66,6 +67,12 @@ const NavBar = () => {
             className=" bg-white inline-block rounded-t py-2 px-4 font-semibold text-pink-500 hover:text-pink-800"
             to="/"
             onClick={() => {
+              Cookie.remove("accessToken");
+              Cookie.remove("refreshToken");
+              Cookie.remove("user");
+              Cookie.remove("userLoggedEmail");
+              Cookie.remove("userLoggedNickname");
+              Cookie.remove("userLoggedId");
               console.log("wylogowano");
             }}
           >
