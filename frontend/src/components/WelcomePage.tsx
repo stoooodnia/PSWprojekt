@@ -60,14 +60,14 @@ const WelcomePage = () => {
             response.json().then((resData) => {
               console.log(resData);
               setIsLoading(false);
-              Cookie.set("accessToken", resData.accessToken);
-              Cookie.set("refreshToken", resData.refreshToken);
-              console.log("pobrano token i zamontowano w ciasteczku");
+              // Cookie.set("accessToken", resData.accessToken);
+              // Cookie.set("refreshToken", resData.refreshToken);
+              // console.log("pobrano token i zamontowano w ciasteczku");
               fetch("http://localhost:1337/api/profile/me", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: resData.accessToken as string,
+                  // Authorization: resData.accessToken as string,
                 },
                 body: JSON.stringify({
                   email: data.email,
@@ -75,7 +75,7 @@ const WelcomePage = () => {
               }).then((response) => {
                 if (response.status === 200) {
                   response.json().then((resData) => {
-                    Cookie.set("userLoggedId", resData.user._id);
+                    Cookie.set("userLoggedId", resData.user.id);
                     Cookie.set("userLoggedEmail", resData.user.email);
                     Cookie.set("userLoggedNickname", resData.user.nickname);
                     console.log("pobrano usera i zamontowano w ciasteczku");
@@ -86,7 +86,7 @@ const WelcomePage = () => {
             });
             setIsLoading(false);
           }
-          if (response.status === 401) {
+          if (response.status === 403) {
             setError("email", {
               type: "manual",
               message: "Nieprawidłowy email lub hasło!",

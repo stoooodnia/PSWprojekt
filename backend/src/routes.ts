@@ -1,5 +1,7 @@
 import { createUser } from "./db/commands/createUser";
 import { Express, Request, Response } from "express";
+import { logIn } from "./db/queries/logIn";
+import { deleteUser } from "./db/commands/deleteUser";
 
 function routes(app: Express) {
   // healthcheck
@@ -22,7 +24,18 @@ function routes(app: Express) {
     }
   });
   //logowanie
-  app.post("/api/sessions");
+  app.post("/api/sessions", async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    try {
+      const user = await logIn(email, password);
+      res.status(200).send({
+        message: "User logged in successfully",
+        data: user,
+      });
+    } catch (error: any) {
+      res.status(403).send(error);
+    }
+  });
 
   // pobieranie zalogowanego użytkownika
   app.post("/api/profile/me", async (req: Request, res: Response) => {});
@@ -34,6 +47,23 @@ function routes(app: Express) {
 
   // tworzenie gry
   app.get("/api/game");
+
+  // usuwanie profilu
+  app.delete("/api/profile/:email", async (req: Request, res: Response) => {
+    const email = req.params.email;
+    try {
+      const deletedUser = await deleteUser(email);
+      res.status(200).send({
+        message: "User deleted successfully",
+        data: deletedUser,
+      });
+    } catch (error: any) {
+      res.status(409).send({
+        message: "Failed to delete user",
+        error: error,
+      });
+    }
+  });
 
   // pobieranie profilu
   app.get("/api/profile/:id", async (req: Request, res: Response) => {});

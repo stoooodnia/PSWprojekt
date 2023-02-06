@@ -19,7 +19,7 @@ export const createUser = (userProfile: UserProfile): Promise<UserProfile> => {
       )
       .then((result: any) => {
         // log the existing user
-        logger.info("match returned");
+        logger.info("zarejestrowano użytkownika");
         // if the records < 1 then create a new user
         if (result.records.length < 1) {
           // Use session.run() to create a new User node in the db

@@ -18,7 +18,6 @@ app.listen(port, async () => {
   logger.info(`Server is running at http://localhost:${port}`);
 
   await connect();
-  logger.info("check1");
 
   routes(app);
 });
