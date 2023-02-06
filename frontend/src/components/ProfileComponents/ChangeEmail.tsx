@@ -17,7 +17,7 @@ const registerSchema = yup.object().shape({
 
 // TODO: Get user form cookie
 const getUser = () => {
-  return Cookie.get("userLoggedId");
+  return Cookie.get("userLoggedEmail");
 };
 
 const ChangeEmail = () => {
@@ -33,9 +33,7 @@ const ChangeEmail = () => {
       email: "",
     },
   });
-  const navigate = useNavigate();
 
-  const [Status, setStatus] = useState("");
   const formSubmitHandler: SubmitHandler<FormValues> = (data: FormValues) => {
     // CRUD 7 - PUT -  Change email
     fetch("http://localhost:1337/api/changeEmail", {
@@ -44,8 +42,8 @@ const ChangeEmail = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: getUser(),
-        newemail: data.email,
+        email: getUser(),
+        newEmail: data.email,
       }),
     }).then((response) => {
       if (response.status === 200) {

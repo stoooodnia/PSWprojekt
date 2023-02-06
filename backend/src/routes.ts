@@ -4,6 +4,7 @@ import { Express, Request, Response } from "express";
 import { logIn } from "./db/queries/logIn";
 import { deleteUser } from "./db/commands/deleteUser";
 import logger from "./utils/logger";
+import { changeEmail } from "./db/commands/changeEmail";
 
 function routes(app: Express) {
   // healthcheck
@@ -90,7 +91,22 @@ function routes(app: Express) {
   app.get("/api/friends/:nickname", async (req: Request, res: Response) => {});
 
   // zmiana maila
-  app.put("/api/changeEmail", async (req: Request, res: Response) => {});
+  app.put("/api/changeEmail", async (req: Request, res: Response) => {
+    console.log(req.body);
+    const { email, newEmail } = req.body;
+
+    try {
+      const user = await changeEmail(email, newEmail);
+      const status = JSON.stringify(user.data);
+      if (status === "null") {
+        return res.status(409).send({ error: "User not found" });
+      }
+
+      return res.status(200).send({ message: "Email changed successfully" });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
 
   // zmiana nicku
   app.put("/api/changeNickname", async (req: Request, res: Response) => {});
