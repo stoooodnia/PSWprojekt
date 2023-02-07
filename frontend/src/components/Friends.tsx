@@ -91,6 +91,24 @@ const Friends = () => {
       });
   };
 
+  const handleImport = () => {
+    const input = document.getElementById("import") as HTMLInputElement;
+    //check if files attached
+    if (input.files && input.files[0]) {
+      //send csv file to server
+      const formData = new FormData();
+      formData.append("file", input.files[0]);
+      fetch("http://localhost:1337/api/importUsers", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((resdata) => {
+          console.log(resdata);
+        });
+    }
+  };
+
   return (
     <div className="flex flex-row h-screen w-screen">
       <div
@@ -102,14 +120,23 @@ const Friends = () => {
       </div>
       <div className="w-1/2">
         <NavBar />
-        <button
-          hidden={isAdmin === "true" ? false : true}
-          type="submit"
-          className="w-56 bg-white hover:bg-gray-100 text-gray-800 font-semibold mb-5 py-2 px-4 border-2 rounded shadow"
-          onClick={() => handleDownload()}
-        >
-          pobierz wszystkich użytkowników
-        </button>
+        <div className="flex">
+          <button
+            hidden={isAdmin === "true" ? false : true}
+            type="submit"
+            className="w-56 bg-white hover:bg-gray-100 text-gray-800 font-semibold mb-5 py-2 px-4 border-2 rounded shadow"
+            onClick={() => handleDownload()}
+          >
+            pobierz wszystkich użytkowników
+          </button>
+          {/* <input id="import" type="file" />
+          <button
+            className="w-56 bg-white hover:bg-gray-100 text-gray-800 font-semibold mb-5 py-2 px-4 border-2 rounded shadow"
+            onClick={() => handleImport()}
+          >
+            wgraj plik
+          </button> */}
+        </div>
         <div>
           <div className="flex flex-col gap-4">
             <input

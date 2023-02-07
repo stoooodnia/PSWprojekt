@@ -10,6 +10,8 @@ import { changePassword } from "./db/commands/changePassword";
 import { getStats } from "./db/queries/getStats";
 import { getUsers } from "./db/queries/getUsers";
 import { getAllUsers } from "./db/queries/getAllUsers";
+import { incGames } from "./db/commands/incGames";
+import { sumGamesPlayed } from "./db/queries/sumGamesPlayed";
 
 function routes(app: Express) {
   // healthcheck
@@ -182,6 +184,27 @@ function routes(app: Express) {
         .set("Content-Type", "text/csv")
         .status(200)
         .send(csv);
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
+  // inkrementacja rozegranych gier
+  app.put("/api/incrementGames", async (req: Request, res: Response) => {
+    const { nickname } = req.body;
+    try {
+      const user = await incGames(nickname);
+      return res
+        .status(200)
+        .send({ message: "Games incremented successfully" });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
+  // sumowanie rozegranych gier
+  app.get("/api/sumGamesPlayed", async (req: Request, res: Response) => {
+    try {
+      const sum = await sumGamesPlayed();
+      return res.status(200).send({ sum });
     } catch (error) {
       return res.status(500).send({ error: "Server error" });
     }
