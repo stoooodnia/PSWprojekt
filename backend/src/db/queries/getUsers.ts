@@ -6,8 +6,10 @@ export const getUsers = (pattern?: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     const session = driver.session();
     logger.info(pattern);
-    if (pattern == null) {
+    if (pattern === "") {
       pattern = ".*";
+    } else {
+      pattern = ".*" + pattern + ".*";
     }
     session
       .run(
@@ -17,14 +19,13 @@ export const getUsers = (pattern?: string): Promise<any> => {
         }
       )
       .then((result) => {
-        logger.info(result);
         session.close();
+        const users = result.records.map((record) =>
+          lodash.omit(record.get("user").properties, "password")
+        );
         resolve({
           status: "success",
-          data: lodash.omit(
-            result.records[0].get("user").properties,
-            "password"
-          ),
+          data: users,
         });
       })
       .catch((error) => {

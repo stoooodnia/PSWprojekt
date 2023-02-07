@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
-import { graczJa } from "../utils/samples";
+import Cookie from "js-cookie";
 
 type Stats = {
   gamesPlayed: number;
@@ -8,22 +8,16 @@ type Stats = {
   gamesLost?: number;
 };
 
-type User = {
-  nickname: string;
-  email: string;
-};
-
-// TODO - ładowanie danych zalogowanego użytkownika z ciasteczek.
-const getLoggedUserData = (): User => {
-  return graczJa;
+const getLoggedUserData = () => {
+  return Cookie.get("userLoggedNickname");
 };
 
 const Stats = () => {
-  const [Stats, setStats] = useState({} as Stats);
+  const [Stats, setStats] = useState({ gamesPlayed: 0 } as Stats);
   // CRUD 4 - GET - Get stats of logged user
   useEffect(() => {
-    const loggedUser = getLoggedUserData();
-    fetch(`http://localhost:1337/stats/${loggedUser.nickname}`, {
+    const loggedUserNickname = getLoggedUserData();
+    fetch(`http://localhost:1337/api/stats/${loggedUserNickname}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +25,8 @@ const Stats = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setStats(data);
+        console.log("pobrałem gry");
+        setStats({ gamesPlayed: data.data.data.gamesPlayed });
       });
   }, []);
   return (
@@ -45,6 +40,9 @@ const Stats = () => {
       </div>
       <div className="w-1/2">
         <NavBar />
+        <div className="flex ml-5 font-semibold text-xl flex-col h-full">
+          Zagrane gry: {Stats.gamesPlayed}
+        </div>
       </div>
     </div>
   );

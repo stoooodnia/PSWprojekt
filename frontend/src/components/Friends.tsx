@@ -28,8 +28,9 @@ const Friends = () => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          setFriends(data.users);
+        .then((resdata) => {
+          console.log(JSON.stringify(resdata.data.data));
+          setFriends(resdata.data.data);
         });
     } else {
       fetch(`http://localhost:1337/api/friends/${searchTerm}`, {
@@ -39,8 +40,9 @@ const Friends = () => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          setFriends(data.users);
+        .then((resdata) => {
+          console.log(JSON.stringify(resdata));
+          setFriends(resdata.data.data);
         });
     }
   }, [searchTerm]);
@@ -91,7 +93,10 @@ const Friends = () => {
             <ul className="flex flex-col gap-1 text-xl">
               {Friends.map((friend, i) => (
                 <li key={i} className="flex gap-2">
-                  <a className="hover:text-2xl" href={`friends/${friend._id}`}>
+                  <a
+                    className="hover:text-2xl"
+                    href={`friends/${friend.nickname}`}
+                  >
                     <FontAwesomeIcon
                       className={randomSpy2()}
                       icon={faUserSecret}

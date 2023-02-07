@@ -7,6 +7,8 @@ import logger from "./utils/logger";
 import { changeEmail } from "./db/commands/changeEmail";
 import { changeNickname } from "./db/commands/changeNickname";
 import { changePassword } from "./db/commands/changePassword";
+import { getStats } from "./db/queries/getStats";
+import { getUsers } from "./db/queries/getUsers";
 
 function routes(app: Express) {
   // healthcheck
@@ -41,21 +43,6 @@ function routes(app: Express) {
       res.status(403).send(error);
     }
   });
-
-  // pobieranie zalogowanego użytkownika
-  app.post("/api/profile/me", async (req: Request, res: Response) => {
-    const email = req.body.email;
-    try {
-      const user = await getProfile(email);
-      res.status(200).send({
-        message: "User found successfully",
-        data: user,
-      });
-    } catch (error: any) {
-      res.status(403).send(error);
-    }
-  });
-
   // usuwanie profilu
   app.delete("/api/profile/:email", async (req: Request, res: Response) => {
     const email = req.params.email;
@@ -80,17 +67,39 @@ function routes(app: Express) {
   app.get("/api/game");
 
   // pobieranie profilu
-  app.get("/api/profile/:id", async (req: Request, res: Response) => {});
+  app.get("/api/profile/:nickname", async (req: Request, res: Response) => {
+    const nickname = req.params.nickname;
+    try {
+      const user = await getProfile(nickname);
+      res.status(200).send({
+        message: "User found successfully",
+        data: user,
+      });
+    } catch (error: any) {
+      res.status(403).send(error);
+    }
+  });
 
   // pobieranie statystyk
-  app.get("/api/stats/:nickname");
+  app.get("/api/stats/:nickname", async (req: Request, res: Response) => {
+    console.log(req.body);
+    const nickname = req.params.nickname;
+    try {
+      const user = await getStats(nickname);
+      logger.info("w endpointcie dostałem: " + user);
+      return res
+        .status(200)
+        .send({ message: "User found successfully", data: user });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
 
   // pobieranie listy graczy bez wzorca
   app.get("/api/friends", async (req: Request, res: Response) => {
-    console.log(req.body);
-    const { nickname } = req.body;
+    const nickname = "";
     try {
-      const users = await getProfile(nickname);
+      const users = await getUsers(nickname);
       return res
         .status(200)
         .send({ message: "Matching users found", data: users });
@@ -100,7 +109,17 @@ function routes(app: Express) {
   });
 
   // pobieranie listy graczy ze wzorcem
-  app.get("/api/friends/:nickname", async (req: Request, res: Response) => {});
+  app.get("/api/friends/:searchTerm", async (req: Request, res: Response) => {
+    const pattern = req.params.searchTerm;
+    try {
+      const users = await getUsers(pattern);
+      return res
+        .status(200)
+        .send({ message: "Matching users found", data: users });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
 
   // zmiana maila
   app.put("/api/changeEmail", async (req: Request, res: Response) => {

@@ -30,12 +30,15 @@ const Profile = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: Cookie.get("accessToken") as string,
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          setProfil(data);
+        .then((resdata) => {
+          console.log(resdata);
+          setProfil({
+            email: resdata.data.data.email,
+            nickname: resdata.data.data.nickname,
+          });
         })
         .catch((err) => {
           console.log("nie znaleziono użytkownika");
