@@ -18,7 +18,7 @@ const registerSchema = yup.object().shape({
 
 // TODO: Get user form cookie
 const getUser = () => {
-  return Cookie.get("userLoggedId");
+  return Cookie.get("userLoggedEmail");
 };
 
 const ChangePassword = () => {
@@ -48,7 +48,7 @@ const ChangePassword = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: getUser(),
+        email: getUser(),
         newPassword: password,
         passwordConfirmation: passwordConfirmation,
       }),
@@ -57,7 +57,7 @@ const ChangePassword = () => {
         console.log("zmieniono hasło użytkownika!");
         setError("password", {
           type: "manual",
-          message: "Password zostało zmienione!",
+          message: "Hasło zostało zmienione!",
         });
       }
     });

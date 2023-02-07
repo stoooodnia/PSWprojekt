@@ -6,6 +6,7 @@ import { deleteUser } from "./db/commands/deleteUser";
 import logger from "./utils/logger";
 import { changeEmail } from "./db/commands/changeEmail";
 import { changeNickname } from "./db/commands/changeNickname";
+import { changePassword } from "./db/commands/changePassword";
 
 function routes(app: Express) {
   // healthcheck
@@ -136,7 +137,15 @@ function routes(app: Express) {
     }
   });
   // zmiana hasła
-  app.put("/api/changePassword", async (req: Request, res: Response) => {});
+  app.put("/api/changePassword", async (req: Request, res: Response) => {
+    const { email, newPassword } = req.body;
+    try {
+      const user = await changePassword(email, newPassword);
+      return res.status(200).send({ message: "Password changed successfully" });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
 }
 
 export default routes;
