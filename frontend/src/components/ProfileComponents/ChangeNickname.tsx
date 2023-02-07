@@ -50,7 +50,8 @@ const ChangeNickname = () => {
       }),
     }).then((response) => {
       if (response.status === 200) {
-        response.json().then((data) => {
+        response.json().then((Resdata) => {
+          Cookie.set("userLoggedNickname", data.nickname);
           console.log("zmieniono nickname użytkownika");
         });
         setError("nickname", {

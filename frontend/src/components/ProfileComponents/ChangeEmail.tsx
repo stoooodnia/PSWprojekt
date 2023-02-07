@@ -47,7 +47,8 @@ const ChangeEmail = () => {
       }),
     }).then((response) => {
       if (response.status === 200) {
-        response.json().then((data) => {
+        response.json().then((Resdata) => {
+          Cookie.set("userLoggedEmail", data.email);
           console.log("zmieniono mail użytkownika");
         });
         setError("email", {

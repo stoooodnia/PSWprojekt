@@ -55,12 +55,6 @@ function routes(app: Express) {
     }
   });
 
-  // wylogowywanie
-  app.delete("/api/sessions");
-
-  // tworzenie gry
-  app.get("/api/game");
-
   // usuwanie profilu
   app.delete("/api/profile/:email", async (req: Request, res: Response) => {
     const email = req.params.email;
@@ -78,6 +72,11 @@ function routes(app: Express) {
       });
     }
   });
+  // wylogowywanie
+  app.delete("/api/sessions");
+
+  // tworzenie gry
+  app.get("/api/game");
 
   // pobieranie profilu
   app.get("/api/profile/:id", async (req: Request, res: Response) => {});
@@ -86,7 +85,18 @@ function routes(app: Express) {
   app.get("/api/stats/:nickname");
 
   // pobieranie listy graczy bez wzorca
-  app.get("/api/friends", async (req: Request, res: Response) => {});
+  app.get("/api/friends", async (req: Request, res: Response) => {
+    console.log(req.body);
+    const { nickname } = req.body;
+    try {
+      const users = await getProfile(nickname);
+      return res
+        .status(200)
+        .send({ message: "Matching users found", data: users });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
 
   // pobieranie listy graczy ze wzorcem
   app.get("/api/friends/:nickname", async (req: Request, res: Response) => {});
@@ -130,19 +140,3 @@ function routes(app: Express) {
 }
 
 export default routes;
-
-// app.put("/api/changeEmail", async (req: Request, res: Response) => {
-//   console.log(req.body);
-//   const { id, newemail } = req.body;
-
-//   try {
-//     const user = await changeEmail(id, newemail);
-//     if (!user) {
-//       return res.status(404).send({ error: "User not found" });
-//     }
-
-//     return res.status(200).send({ message: "Email changed successfully" });
-//   } catch (error) {
-//     return res.status(500).send({ error: "Server error" });
-//   }
-// });
