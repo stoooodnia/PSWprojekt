@@ -1,8 +1,9 @@
+import { changeNickname } from "./../commands/changeNickname";
 import { driver } from "../../utils/connect";
 import logger from "../../utils/logger";
 import lodash from "lodash";
 
-export const getUsers = (pattern?: string): Promise<any> => {
+export const getUsers = (pattern: string, nickname: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     const session = driver.session();
     logger.info(pattern);
@@ -13,9 +14,10 @@ export const getUsers = (pattern?: string): Promise<any> => {
     }
     session
       .run(
-        "MATCH (user:User) WHERE user.nickname =~ $pattern RETURN user ORDER BY user.nickname LIMIT 5",
+        "MATCH (user:User) WHERE user.nickname =~ $pattern AND NOT user.nickname = $nickname RETURN user ORDER BY user.nickname LIMIT 5",
         {
           pattern: pattern,
+          nickname: nickname,
         }
       )
       .then((result) => {

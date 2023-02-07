@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy2 } from "../utils/randomSpy";
+import Cookie from "js-cookie";
 
 interface Friend {
   nickname: string;
@@ -22,10 +23,13 @@ const Friends = () => {
     // CRUD 5 - GET - Get friends / WYSZUKIWANIE WZORCA
     if (searchTerm === "") {
       fetch("http://localhost:1337/api/friends", {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          nickname: Cookie.get("userLoggedNickname"),
+        }),
       })
         .then((res) => res.json())
         .then((resdata) => {
@@ -34,10 +38,13 @@ const Friends = () => {
         });
     } else {
       fetch(`http://localhost:1337/api/friends/${searchTerm}`, {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          nickname: Cookie.get("userLoggedNickname"),
+        }),
       })
         .then((res) => res.json())
         .then((resdata) => {

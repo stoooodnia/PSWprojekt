@@ -96,10 +96,11 @@ function routes(app: Express) {
   });
 
   // pobieranie listy graczy bez wzorca
-  app.get("/api/friends", async (req: Request, res: Response) => {
-    const nickname = "";
+  app.post("/api/friends", async (req: Request, res: Response) => {
+    const pattern = "";
+    const nickname = req.body.nickname;
     try {
-      const users = await getUsers(nickname);
+      const users = await getUsers(pattern, nickname);
       return res
         .status(200)
         .send({ message: "Matching users found", data: users });
@@ -109,10 +110,11 @@ function routes(app: Express) {
   });
 
   // pobieranie listy graczy ze wzorcem
-  app.get("/api/friends/:searchTerm", async (req: Request, res: Response) => {
+  app.post("/api/friends/:searchTerm", async (req: Request, res: Response) => {
     const pattern = req.params.searchTerm;
+    const nickname = req.body.nickname;
     try {
-      const users = await getUsers(pattern);
+      const users = await getUsers(pattern, nickname);
       return res
         .status(200)
         .send({ message: "Matching users found", data: users });
