@@ -20,7 +20,7 @@ const registerSchema = yup.object().shape({
 
 // TODO: Get user form cookie
 const getUser = () => {
-  return Cookie.get("userLoggedId");
+  return Cookie.get("userLoggedNickname");
 };
 
 const ChangeNickname = () => {
@@ -45,7 +45,7 @@ const ChangeNickname = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: getUser(),
+        nickname: getUser(),
         newNickname: data.nickname,
       }),
     }).then((response) => {
@@ -75,7 +75,7 @@ const ChangeNickname = () => {
       <div className="flex flex-row items-center gap-2">
         <input
           {...register("nickname")}
-          placeholder="nowy email"
+          placeholder="nowy nick"
           className="w-56 text-center bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-myWhite focus:border-myBlack"
         />
         {errors.nickname && (

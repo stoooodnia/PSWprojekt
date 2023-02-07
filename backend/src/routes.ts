@@ -5,6 +5,7 @@ import { logIn } from "./db/queries/logIn";
 import { deleteUser } from "./db/commands/deleteUser";
 import logger from "./utils/logger";
 import { changeEmail } from "./db/commands/changeEmail";
+import { changeNickname } from "./db/commands/changeNickname";
 
 function routes(app: Express) {
   // healthcheck
@@ -99,7 +100,7 @@ function routes(app: Express) {
       const user = await changeEmail(email, newEmail);
       const status = JSON.stringify(user.data);
       if (status === "null") {
-        return res.status(409).send({ error: "User not found" });
+        return res.status(409).send({ error: "Email already taken" });
       }
 
       return res.status(200).send({ message: "Email changed successfully" });
@@ -109,7 +110,21 @@ function routes(app: Express) {
   });
 
   // zmiana nicku
-  app.put("/api/changeNickname", async (req: Request, res: Response) => {});
+  app.put("/api/changeNickname", async (req: Request, res: Response) => {
+    const { nickname, newNickname } = req.body;
+
+    try {
+      const user = await changeNickname(nickname, newNickname);
+      const status = JSON.stringify(user.data);
+      if (status === "null") {
+        return res.status(409).send({ error: "Nickname already taken" });
+      }
+
+      return res.status(200).send({ message: "Nickname changed successfully" });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
   // zmiana hasła
   app.put("/api/changePassword", async (req: Request, res: Response) => {});
 }
