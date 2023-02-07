@@ -17,6 +17,7 @@ const Profile = () => {
   let spyClass = "";
   // CRUD 3 - GET - Get profile of logged user, or another user
   const { id } = useParams();
+  const isAdmin = Cookie.get("isAdmin");
   useEffect(() => {
     if (id === "me") {
       const email = Cookie.get("userLoggedEmail");
@@ -74,9 +75,9 @@ const Profile = () => {
             </div>
           </div>
           <button
-            hidden={id === "me" ? false : true}
+            hidden={id === "me" && isAdmin === "false" ? false : true}
             onClick={() => {
-              navigate("/profile/details");
+              navigate(`/profile/details/${Profil.nickname}`);
             }}
             className="mt-5 w-42 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"
           >
@@ -84,10 +85,20 @@ const Profile = () => {
             zmień dane{" "}
           </button>
           <button
-            hidden={id === "me" ? false : true}
+            hidden={id !== "me" && isAdmin === "true" ? false : true}
+            onClick={() => {
+              navigate(`/profile/details/${id}`);
+            }}
+            className="mt-5 w-42 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"
+          >
+            {" "}
+            zmień dane{" "}
+          </button>
+          <button
+            hidden={id === "me" && isAdmin === "false" ? false : true}
             onClick={() => {
               // CRUD 10 - DELETE - Delete profile
-              fetch(`http://localhost:1337/api/profile/${Profil.email}`, {
+              fetch(`http://localhost:1337/api/profile/${Profil.nickname}`, {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",
@@ -98,6 +109,33 @@ const Profile = () => {
                     Cookie.remove("user");
                     alert("profil usunięto pomyślnie");
                     navigate("/");
+                  } else {
+                    alert("nie udało się usunąć profilu");
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }}
+            className="ml-5 mt-5 w-42 bg-white hover:bg-gray-100 text-pink-500 hover:text-pink-800 font-semibold py-2 px-4 border rounded shadow"
+          >
+            usuń profil
+          </button>{" "}
+          <button
+            hidden={id !== "me" && isAdmin === "true" ? false : true}
+            onClick={() => {
+              // CRUD 10 - DELETE - Delete profile
+              fetch(`http://localhost:1337/api/profile/${id}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              })
+                .then((response) => {
+                  if (response.status === 200) {
+                    Cookie.remove("user");
+                    alert("profil usunięto pomyślnie");
+                    navigate("/play");
                   } else {
                     alert("nie udało się usunąć profilu");
                   }

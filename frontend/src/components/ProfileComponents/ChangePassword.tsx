@@ -16,12 +16,11 @@ const registerSchema = yup.object().shape({
   passwordConfirmation: yup.string().required("potwierdź hasło!"),
 });
 
-// TODO: Get user form cookie
-const getUser = () => {
-  return Cookie.get("userLoggedEmail");
+type Props = {
+  nickname: string;
 };
 
-const ChangePassword = () => {
+const ChangePassword = ({ nickname }: Props) => {
   const {
     register,
     handleSubmit,
@@ -48,7 +47,7 @@ const ChangePassword = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: getUser(),
+        nickname: nickname,
         newPassword: password,
         passwordConfirmation: passwordConfirmation,
       }),

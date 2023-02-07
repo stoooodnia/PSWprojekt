@@ -2,10 +2,13 @@ import { driver } from "../../utils/connect";
 import logger from "../../utils/logger";
 import lodash from "lodash";
 
-export const changeEmail = (email: string, newEmail: string): Promise<any> => {
+export const changeEmail = (
+  nickname: string,
+  newEmail: string
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     const session = driver.session();
-    logger.info(email + " " + newEmail);
+    logger.info(nickname + " " + newEmail);
     session
       .run(
         "MATCH (user:User) WHERE user.email = $newEmail RETURN count(user)",
@@ -24,9 +27,9 @@ export const changeEmail = (email: string, newEmail: string): Promise<any> => {
         } else {
           session
             .run(
-              "MATCH (user:User) WHERE user.email = $email SET user.email = $newEmail RETURN user",
+              "MATCH (user:User) WHERE user.nickname = $nickname SET user.email = $newEmail RETURN user",
               {
-                email: email,
+                nickname: nickname,
                 newEmail: newEmail,
               }
             )

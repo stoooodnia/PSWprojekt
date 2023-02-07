@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy2 } from "../utils/randomSpy";
 import Cookie from "js-cookie";
+import { saveAs } from "file-saver";
 
 interface Friend {
   nickname: string;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const Friends = () => {
+  const isAdmin = Cookie.get("isAdmin");
   const [searchTerm, setSearchTerm] = useState("");
   const searchInput = useRef<HTMLInputElement>(null);
   const [Friends, setFriends] = useState([] as any[]);
@@ -75,6 +77,19 @@ const Friends = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
+  const handleDownload = () => {
+    fetch("http://localhost:1337/api/getAllUsers", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.text())
+      .then((text) => {
+        var blob = new Blob([text], { type: "text/csv;charset=utf-8" });
+        saveAs(blob, "users.csv");
+      });
+  };
 
   return (
     <div className="flex flex-row h-screen w-screen">
@@ -87,6 +102,14 @@ const Friends = () => {
       </div>
       <div className="w-1/2">
         <NavBar />
+        <button
+          hidden={isAdmin === "true" ? false : true}
+          type="submit"
+          className="w-56 bg-white hover:bg-gray-100 text-gray-800 font-semibold mb-5 py-2 px-4 border-2 rounded shadow"
+          onClick={() => handleDownload()}
+        >
+          pobierz wszystkich użytkowników
+        </button>
         <div>
           <div className="flex flex-col gap-4">
             <input

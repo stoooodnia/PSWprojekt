@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import Cookie from "js-cookie";
 
 type FormValues = {
   nickname: string;
@@ -29,6 +30,7 @@ const registerSchema = yup.object().shape({
 });
 
 const RegisterPage = () => {
+  const isAdmin = Cookie.get("isAdmin");
   const {
     register,
     handleSubmit,
@@ -89,8 +91,13 @@ const RegisterPage = () => {
         });
 
         setTimeout(() => {
-          navigate("/");
-          setIsLoading(false);
+          if (isAdmin === "true") {
+            navigate("/play");
+            setIsLoading(false);
+          } else {
+            navigate("/");
+            setIsLoading(false);
+          }
         }, 2000);
       }
       if (response.status === 409) {

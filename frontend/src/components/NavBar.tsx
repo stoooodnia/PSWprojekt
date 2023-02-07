@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import Cookie from "js-cookie";
 
 const NavBar = () => {
+  const isAdmin = Cookie.get("isAdmin");
+
   const activeClassName =
     "bg-white inline-block rounded-t py-2 px-4 text-myBlack font-semibold";
   const normalClassName =
@@ -28,7 +30,7 @@ const NavBar = () => {
             }
             to="/friends"
           >
-            Znajomi
+            Użytkownicy
           </NavLink>
         </li>
         <li id="/manual" className="mr-1">
@@ -60,6 +62,20 @@ const NavBar = () => {
             to="/profile/me"
           >
             Profil
+          </NavLink>
+        </li>
+        <li
+          id="/register "
+          className="mr-1"
+          hidden={isAdmin === "true" ? false : true}
+        >
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? activeClassName : normalClassName
+            }
+            to="/register"
+          >
+            Dodaj użytkownika
           </NavLink>
         </li>
         <li id="/logout" className="mr-1">

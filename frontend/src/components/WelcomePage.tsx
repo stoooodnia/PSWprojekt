@@ -58,6 +58,7 @@ const WelcomePage = () => {
         .then((response) => {
           if (response.status === 200) {
             response.json().then((resData) => {
+              Cookie.set("isAdmin", resData.data.data.admin);
               Cookie.set("userLoggedEmail", resData.data.data.email);
               Cookie.set("userLoggedNickname", resData.data.data.nickname);
               console.log("pobrano usera i zamontowano w ciasteczku");

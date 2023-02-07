@@ -9,6 +9,7 @@ import { changeNickname } from "./db/commands/changeNickname";
 import { changePassword } from "./db/commands/changePassword";
 import { getStats } from "./db/queries/getStats";
 import { getUsers } from "./db/queries/getUsers";
+import { getAllUsers } from "./db/queries/getAllUsers";
 
 function routes(app: Express) {
   // healthcheck
@@ -44,11 +45,11 @@ function routes(app: Express) {
     }
   });
   // usuwanie profilu
-  app.delete("/api/profile/:email", async (req: Request, res: Response) => {
-    const email = req.params.email;
-    logger.info(email);
+  app.delete("/api/profile/:nickname", async (req: Request, res: Response) => {
+    const nickname = req.params.nickname;
+    logger.info(nickname);
     try {
-      const deletedUser = await deleteUser(email);
+      const deletedUser = await deleteUser(nickname);
       res.status(200).send({
         message: "User deleted successfully",
         data: deletedUser,
@@ -126,10 +127,10 @@ function routes(app: Express) {
   // zmiana maila
   app.put("/api/changeEmail", async (req: Request, res: Response) => {
     console.log(req.body);
-    const { email, newEmail } = req.body;
+    const { nickname, newEmail } = req.body;
 
     try {
-      const user = await changeEmail(email, newEmail);
+      const user = await changeEmail(nickname, newEmail);
       const status = JSON.stringify(user.data);
       if (status === "null") {
         return res.status(409).send({ error: "Email already taken" });
@@ -159,10 +160,28 @@ function routes(app: Express) {
   });
   // zmiana hasła
   app.put("/api/changePassword", async (req: Request, res: Response) => {
-    const { email, newPassword } = req.body;
+    const { nickname, newPassword } = req.body;
     try {
-      const user = await changePassword(email, newPassword);
+      const user = await changePassword(nickname, newPassword);
       return res.status(200).send({ message: "Password changed successfully" });
+    } catch (error) {
+      return res.status(500).send({ error: "Server error" });
+    }
+  });
+  // pobieranie wszystkich użytwników
+  app.get("/api/getAllUsers", async (req: Request, res: Response) => {
+    try {
+      const users = await getAllUsers();
+      let csv = "";
+      csv += Object.keys(users[0]).join(",") + "\n";
+      users.forEach((user: { [s: string]: unknown } | ArrayLike<unknown>) => {
+        csv += Object.values(user).join(",") + "\n";
+      });
+      return res
+        .setHeader("Content-disposition", "attachment; filename=users.csv")
+        .set("Content-Type", "text/csv")
+        .status(200)
+        .send(csv);
     } catch (error) {
       return res.status(500).send({ error: "Server error" });
     }

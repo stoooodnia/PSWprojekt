@@ -3,18 +3,18 @@ import logger from "../../utils/logger";
 import lodash from "lodash";
 
 export const changePassword = (
-  email: string,
+  nickname: string,
   newPassword: string
 ): Promise<any> => {
   return new Promise((resolve, reject) => {
     const session = driver.session();
-    logger.info("zaczynam zmiane hasła" + email + " " + newPassword);
+    logger.info("zaczynam zmiane hasła" + nickname + " " + newPassword);
 
     session
       .run(
-        "MATCH (user:User) WHERE user.email = $email SET user.password = $newPassword RETURN user",
+        "MATCH (user:User) WHERE user.nickname = $nickname SET user.password = $newPassword RETURN user",
         {
-          email: email,
+          nickname: nickname,
           newPassword: newPassword,
         }
       )

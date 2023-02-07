@@ -15,16 +15,15 @@ const registerSchema = yup.object().shape({
     .required("Podaj nowy adres email!"),
 });
 
-// TODO: Get user form cookie
-const getUser = () => {
-  return Cookie.get("userLoggedEmail");
+type Props = {
+  nickname: string;
 };
 
-const ChangeEmail = () => {
+const ChangeEmail = ({ nickname }: Props) => {
+  const isAdmin = Cookie.get("isAdmin");
   const {
     register,
     handleSubmit,
-    watch,
     setError,
     formState: { errors },
   } = useForm<FormValues>({
@@ -42,13 +41,15 @@ const ChangeEmail = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: getUser(),
+        nickname: nickname,
         newEmail: data.email,
       }),
     }).then((response) => {
       if (response.status === 200) {
         response.json().then((Resdata) => {
-          Cookie.set("userLoggedEmail", data.email);
+          if (isAdmin !== "true") {
+            Cookie.set("userLoggedEmail", data.email);
+          }
           console.log("zmieniono mail użytkownika");
         });
         setError("email", {

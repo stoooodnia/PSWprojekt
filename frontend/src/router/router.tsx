@@ -11,6 +11,7 @@ import Manual from "../components/Manual";
 import Stats from "../components/Stats";
 import Profile from "../components/Profile";
 import ChangeDetails from "../components/ChangeDetails";
+import { useParams } from "react-router";
 
 export const router = createBrowserRouter([
   {
@@ -58,7 +59,7 @@ export const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "/profile/details",
+    path: "/profile/details/:nickname",
     element: <ChangeDetails />,
   },
 ]);

@@ -1,4 +1,3 @@
-import { changeNickname } from "./../commands/changeNickname";
 import { driver } from "../../utils/connect";
 import logger from "../../utils/logger";
 import lodash from "lodash";

@@ -18,12 +18,13 @@ const registerSchema = yup.object().shape({
     .max(15, "Nowy nick może mieć maksymalnie 15 znaków!"),
 });
 
-// TODO: Get user form cookie
-const getUser = () => {
-  return Cookie.get("userLoggedNickname");
+type Props = {
+  nickname: string;
 };
 
-const ChangeNickname = () => {
+const ChangeNickname = ({ nickname }: Props) => {
+  const isAdmin = Cookie.get("isAdmin");
+  console.log(isAdmin);
   const {
     register,
     handleSubmit,
@@ -45,13 +46,15 @@ const ChangeNickname = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        nickname: getUser(),
+        nickname: nickname,
         newNickname: data.nickname,
       }),
     }).then((response) => {
       if (response.status === 200) {
         response.json().then((Resdata) => {
-          Cookie.set("userLoggedNickname", data.nickname);
+          if (isAdmin !== "true") {
+            Cookie.set("userLoggedNickname", data.nickname);
+          }
           console.log("zmieniono nickname użytkownika");
         });
         setError("nickname", {
