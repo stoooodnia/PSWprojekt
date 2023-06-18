@@ -10,6 +10,9 @@ import cors from "cors";
 const port = config.get<number>("port");
 const app = express();
 
+const keycloak = require("../config/keycloak-config").initKeycloak();
+app.use(keycloak.middleware());
+
 app.use(express.json());
 
 app.use(cors());
