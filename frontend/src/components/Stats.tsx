@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import Cookie from "js-cookie";
+import { useKeycloak } from "@react-keycloak/web";
 
 type Stats = {
   gamesPlayed: number;
@@ -12,6 +13,8 @@ const getLoggedUserData = () => {
   return Cookie.get("userLoggedNickname");
 };
 
+const { keycloak } = useKeycloak();
+
 const Stats = () => {
   const [Stats, setStats] = useState({ gamesPlayed: 0 } as Stats);
   // CRUD 4 - GET - Get stats of logged user
@@ -21,6 +24,7 @@ const Stats = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${keycloak.token}`,
       },
     })
       .then((res) => res.json())

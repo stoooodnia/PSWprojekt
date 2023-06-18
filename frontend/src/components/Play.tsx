@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import NavBar from "./NavBar";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import { useKeycloak } from "@react-keycloak/web";
 
 type FormValues = {
   id: string;
@@ -19,6 +20,12 @@ const gameSchema = yup.object().shape({
 
 const Play = () => {
   const navigate = useNavigate();
+  const { keycloak } = useKeycloak();
+
+  if (!keycloak.authenticated) {
+    navigate("/");
+  }
+
   const {
     register,
     handleSubmit,

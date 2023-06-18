@@ -1,10 +1,11 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect, useState, useLayoutEffect } from "react";
 import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy } from "../utils/randomSpy";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookie from "js-cookie";
+import { useKeycloak } from "@react-keycloak/web";
 
 type User = {
   nickname: string;
@@ -12,6 +13,14 @@ type User = {
 };
 
 const Profile = () => {
+  const { keycloak } = useKeycloak();
+
+  useLayoutEffect(() => {
+    if (!keycloak.authenticated) {
+      navigate("/");
+    }
+  });
+
   const navigate = useNavigate();
   const [Profil, setProfil] = useState<User>({} as User);
   let spyClass = "";

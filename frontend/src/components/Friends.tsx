@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { randomSpy2 } from "../utils/randomSpy";
 import Cookie from "js-cookie";
 import { saveAs } from "file-saver";
+import { useKeycloak } from "@react-keycloak/web";
 
 interface Friend {
   nickname: string;
@@ -16,6 +17,14 @@ interface Props {
 }
 
 const Friends = () => {
+  const { keycloak } = useKeycloak();
+
+  useLayoutEffect(() => {
+    if (!keycloak.authenticated) {
+      keycloak.login();
+    }
+  });
+
   const isAdmin = Cookie.get("isAdmin");
   const [searchTerm, setSearchTerm] = useState("");
   const searchInput = useRef<HTMLInputElement>(null);

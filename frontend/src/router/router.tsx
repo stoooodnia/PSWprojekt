@@ -1,7 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import WelcomePage from "../components/WelcomePage";
-import RegisterPage from "../components/RegisterPage";
 import Play from "../components/Play";
 import NotFound from "../components/NotFound";
 import Game from "../components/Game";
@@ -17,10 +16,6 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <WelcomePage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
   },
   {
     path: "/play",

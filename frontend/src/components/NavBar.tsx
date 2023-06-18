@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Cookie from "js-cookie";
+import { useKeycloak } from "@react-keycloak/web";
 
 const NavBar = () => {
   const isAdmin = Cookie.get("isAdmin");
+  const { keycloak } = useKeycloak();
 
   const activeClassName =
     "bg-white inline-block rounded-t py-2 px-4 text-myBlack font-semibold";
@@ -83,6 +85,7 @@ const NavBar = () => {
             className=" bg-white inline-block rounded-t py-2 px-4 font-semibold text-pink-500 hover:text-pink-800"
             to="/"
             onClick={() => {
+              keycloak.logout();
               Cookie.remove("accessToken");
               Cookie.remove("refreshToken");
               Cookie.remove("user");
