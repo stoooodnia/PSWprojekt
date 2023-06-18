@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import { useKeycloak } from "@react-keycloak/web";
 
 const CheckConnections = () => {
   useLayoutEffect(() => {
