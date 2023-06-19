@@ -19,7 +19,6 @@ export const getStats = (nickname: string): Promise<any> => {
           data: lodash.omit(
             result.records[0].get("user").properties,
             "password",
-            "email",
             "nickname",
             "admin"
           ),

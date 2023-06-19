@@ -10,13 +10,9 @@ export const createUser = (userProfile: UserProfile): Promise<UserProfile> => {
     logger.info(JSON.stringify(userProfile));
     // Use session.run() to attempt to match an existing user
     session
-      .run(
-        "match (user:User) where user.email = $email or user.nickname = $nickname RETURN user",
-        {
-          email: userProfile.email,
-          nickname: userProfile.nickname,
-        }
-      )
+      .run("match (user:User) where user.nickname = $nickname RETURN user", {
+        nickname: userProfile.nickname,
+      })
       .then((result: any) => {
         // log the existing user
         logger.info("zarejestrowano użytkownika");
@@ -27,11 +23,9 @@ export const createUser = (userProfile: UserProfile): Promise<UserProfile> => {
             .run(
               "create (user:User { email: $email, nickname: $nickname, password: $password, gamesPlayed: $gamesPlayed, admin: $admin})",
               {
-                email: userProfile.email,
                 nickname: userProfile.nickname,
-                password: userProfile.password,
                 gamesPlayed: 0,
-                admin: false,
+                admin: userProfile.admin,
               }
             )
             .then((result: any) => {
@@ -49,10 +43,6 @@ export const createUser = (userProfile: UserProfile): Promise<UserProfile> => {
         else {
           // check if the email or nickname already exists
           if (
-            result.records[0].get("user").properties.email === userProfile.email
-          ) {
-            reject({ message: "Email already exists", field: "email" });
-          } else if (
             result.records[0].get("user").properties.nickname ===
             userProfile.nickname
           ) {
