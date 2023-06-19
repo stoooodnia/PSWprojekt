@@ -1,11 +1,45 @@
 import React, { useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
+import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
   const { keycloak } = useKeycloak();
+  const navigate = useNavigate();
+
+  let username = "";
+
   if (keycloak.authenticated) {
-    window.location.href = "/play";
+    if (keycloak.tokenParsed) {
+      const username = keycloak.tokenParsed.preferred_username;
+      alert(username);
+      // CRUD 1 - POST - Register
+      fetch("http://localhost:1337/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nickname: username,
+          admin: keycloak.hasRealmRole("APP-ADMIN"),
+        }),
+      }).then((response) => {
+        navigate("/play");
+      });
+    }
   }
+
+  const submitLogin = () => {
+    // CRUD 2 - POST - Login
+    fetch("http://localhost:1337/api/sessions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nickname: username,
+      }),
+    });
+  };
 
   return (
     <div className="flex flex-row flex-end h-screen w-screen">

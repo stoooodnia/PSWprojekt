@@ -10,3 +10,14 @@
 2023-06-18 15:16:06.209+0000 INFO  Neo4j Server shutdown initiated by request
 2023-06-18 15:16:06.220+0000 INFO  Stopping...
 2023-06-18 15:16:12.573+0000 INFO  Stopped.
+2023-06-19 13:26:25.627+0000 INFO  Starting...
+2023-06-19 13:26:26.022+0000 INFO  This instance is ServerId{f5170461} (f5170461-9045-4f4f-87ec-dcc225cd0eea)
+2023-06-19 13:26:26.758+0000 INFO  ======== Neo4j 5.3.0 ========
+2023-06-19 13:26:29.704+0000 INFO  Bolt enabled on 0.0.0.0:7687.
+2023-06-19 13:26:30.263+0000 INFO  Remote interface available at http://localhost:7474/
+2023-06-19 13:26:30.279+0000 INFO  id: 9506695CA3F2D489A4FAF9A39776493528994D576829E7900023893B0C7FCEFC
+2023-06-19 13:26:30.286+0000 INFO  name: system
+2023-06-19 13:26:30.289+0000 INFO  creationDate: 2023-06-18T15:13:34.494Z
+2023-06-19 13:26:30.291+0000 INFO  Started.
+2023-06-19 13:33:42.393+0000 WARN  The client is unauthorized due to authentication failure.
+2023-06-19 13:33:42.393+0000 WARN  The client is unauthorized due to authentication failure.

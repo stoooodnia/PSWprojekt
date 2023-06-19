@@ -1,7 +1,6 @@
 import { getProfile } from "./db/queries/getProfile";
 import { createUser } from "./db/commands/createUser";
 import { Express, Request, Response } from "express";
-import { logIn } from "./db/queries/logIn";
 import logger from "./utils/logger";
 import { getStats } from "./db/queries/getStats";
 import { getUsers } from "./db/queries/getUsers";
@@ -14,7 +13,7 @@ function routes(app: Express) {
   app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
 
   // rejestracja (tworzenie profilu w bazie danych)
-  app.post("/api/users", async (req, res) => {
+  app.post("/api/register", async (req, res) => {
     const userProfile = req.body;
     try {
       const newUser = await createUser(userProfile);

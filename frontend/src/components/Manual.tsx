@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
+import { useKeycloak } from "@react-keycloak/web";
 
 const Manual = () => {
+  const navigate = useNavigate();
+  const { keycloak } = useKeycloak();
+
+  useLayoutEffect(() => {
+    if (!keycloak.authenticated) {
+      alert("Zaloguj się aby grać!");
+      navigate("/");
+    }
+  });
   return (
     <div className="flex flex-row h-screen w-screen">
       <div

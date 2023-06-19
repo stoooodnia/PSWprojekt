@@ -13,15 +13,17 @@ type User = {
 };
 
 const Profile = () => {
+  const navigate = useNavigate();
+
   const { keycloak } = useKeycloak();
 
   useLayoutEffect(() => {
     if (!keycloak.authenticated) {
+      alert("Zaloguj się aby grać!");
       navigate("/");
     }
   });
 
-  const navigate = useNavigate();
   const [Profil, setProfil] = useState<User>({} as User);
   let spyClass = "";
   // CRUD 3 - GET - Get profile of logged user, or another user

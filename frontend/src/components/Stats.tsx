@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import NavBar from "./NavBar";
 import Cookie from "js-cookie";
 import { useKeycloak } from "@react-keycloak/web";
+import { useNavigate } from "react-router-dom";
 
 type Stats = {
   gamesPlayed: number;
@@ -13,9 +14,16 @@ const getLoggedUserData = () => {
   return Cookie.get("userLoggedNickname");
 };
 
-const { keycloak } = useKeycloak();
-
 const Stats = () => {
+  const navigate = useNavigate();
+  const { keycloak } = useKeycloak();
+
+  useLayoutEffect(() => {
+    if (!keycloak.authenticated) {
+      alert("Zaloguj się aby grać!");
+      navigate("/");
+    }
+  });
   const [Stats, setStats] = useState({ gamesPlayed: 0 } as Stats);
   // CRUD 4 - GET - Get stats of logged user
   useEffect(() => {

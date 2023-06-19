@@ -22,10 +22,6 @@ const Play = () => {
   const navigate = useNavigate();
   const { keycloak } = useKeycloak();
 
-  if (!keycloak.authenticated) {
-    navigate("/");
-  }
-
   const {
     register,
     handleSubmit,

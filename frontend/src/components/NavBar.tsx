@@ -1,10 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Cookie from "js-cookie";
 import { useKeycloak } from "@react-keycloak/web";
 
 const NavBar = () => {
-  const isAdmin = Cookie.get("isAdmin");
+  const navigate = useNavigate();
   const { keycloak } = useKeycloak();
 
   const activeClassName =
@@ -69,15 +69,15 @@ const NavBar = () => {
         <li
           id="/register "
           className="mr-1"
-          hidden={isAdmin === "true" ? false : true}
+          hidden={keycloak.hasRealmRole("APP-ADMIN") ? false : true}
         >
           <NavLink
             className={({ isActive }) =>
               isActive ? activeClassName : normalClassName
             }
-            to="/register"
+            to="/adminPage"
           >
-            Dodaj użytkownika
+            Admin page
           </NavLink>
         </li>
         <li id="/logout" className="mr-1">
@@ -86,12 +86,7 @@ const NavBar = () => {
             to="/"
             onClick={() => {
               keycloak.logout();
-              Cookie.remove("accessToken");
-              Cookie.remove("refreshToken");
-              Cookie.remove("user");
-              Cookie.remove("userLoggedEmail");
-              Cookie.remove("userLoggedNickname");
-              Cookie.remove("userLoggedId");
+              setTimeout(() => navigate("/"), 1000);
               console.log("wylogowano");
             }}
           >

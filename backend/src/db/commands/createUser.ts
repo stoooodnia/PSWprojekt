@@ -21,7 +21,7 @@ export const createUser = (userProfile: UserProfile): Promise<UserProfile> => {
           // Use session.run() to create a new User node in the db
           session
             .run(
-              "create (user:User { email: $email, nickname: $nickname, password: $password, gamesPlayed: $gamesPlayed, admin: $admin})",
+              "create (user:User { nickname: $nickname, gamesPlayed: $gamesPlayed, admin: $admin})",
               {
                 nickname: userProfile.nickname,
                 gamesPlayed: 0,
