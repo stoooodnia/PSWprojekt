@@ -14,7 +14,7 @@ export function PrivateRoute({
   const { keycloak, initialized } = useKeycloak();
 
   if (!initialized) {
-    return <div>Loading...</div>;
+    return <div className="text-5xl">Loading...</div>;
   }
 
   const isAuthorized = (roles: string[]) => {
