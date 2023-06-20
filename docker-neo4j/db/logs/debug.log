@@ -2746,3 +2746,44 @@ The system database supports a restricted set of Cypher clauses. The supported c
 2023-06-20 16:28:29.667+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
 2023-06-20 16:28:29.879+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
 2023-06-20 16:28:34.165+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=461, gcTime=0, gcCount=0}
+2023-06-20 16:29:13.840+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=621, gcTime=0, gcCount=0}
+2023-06-20 16:29:14.098+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=383, gcTime=0, gcCount=0}
+2023-06-20 16:29:29.186+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 16:30:04.164+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=630, gcTime=0, gcCount=0}
+2023-06-20 16:30:29.159+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=267, gcTime=362, gcCount=1}
+2023-06-20 16:31:29.380+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=217, gcTime=0, gcCount=0}
+2023-06-20 16:31:29.994+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=594, gcTime=150, gcCount=1}
+2023-06-20 16:33:28.755+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 16:34:28.464+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 16:34:28.542+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 16:35:28.474+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 16:36:03.466+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] Shutdown started
+2023-06-20 16:36:03.840+0000 INFO  [o.n.b.BoltServer] Requested Bolt server shutdown
+2023-06-20 16:36:03.855+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping remaining idle connections for connector bolt
+2023-06-20 16:36:03.873+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped 16 idling connections for connector bolt
+2023-06-20 16:36:03.936+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopping 'DatabaseId{2cb88a1d[neo4j]}'.
+2023-06-20 16:36:03.942+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/2cb88a1d] Requirement `Database unavailable` makes database neo4j unavailable.
+2023-06-20 16:36:03.945+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/2cb88a1d] DatabaseId{2cb88a1d[neo4j]} is unavailable.
+2023-06-20 16:36:03.959+0000 INFO  [o.n.k.d.Database] [neo4j/2cb88a1d] Waiting for closing transactions.
+2023-06-20 16:36:03.971+0000 INFO  [o.n.k.d.Database] [neo4j/2cb88a1d] All transactions are closed.
+2023-06-20 16:36:03.974+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [neo4j/2cb88a1d] Checkpoint triggered by "Database shutdown" @ txId: 11 checkpoint started...
+2023-06-20 16:36:04.157+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [neo4j/2cb88a1d] Checkpoint triggered by "Database shutdown" @ txId: 11 checkpoint completed in 180ms. Checkpoint flushed 22 pages (0% of total available pages), in 22 IOs. Checkpoint performed with IO limit: unlimited, paused in total 0 times( 0 millis).
+2023-06-20 16:36:04.159+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] [neo4j/2cb88a1d] No log version pruned. The strategy used was '104857600 size'. 
+2023-06-20 16:36:04.496+0000 WARN  [o.n.k.i.t.l.f.c.CheckpointFileChannelNativeAccessor] [neo4j/2cb88a1d] Unable to evict transaction log from cache with version: 0. Error: ErrorCode=-1, errorMessage='Incorrect file descriptor.'
+2023-06-20 16:36:04.502+0000 WARN  [o.n.k.i.t.l.f.LogFileChannelNativeAccessor] [neo4j/2cb88a1d] Unable to evict transaction log from cache with version: 0. Error: ErrorCode=-1, errorMessage='Incorrect file descriptor.'
+2023-06-20 16:36:04.640+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopped 'DatabaseId{2cb88a1d[neo4j]}' successfully.
+2023-06-20 16:36:04.652+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopping 'DatabaseId{00000000[system]}'.
+2023-06-20 16:36:04.656+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] Requirement `Database unavailable` makes database system unavailable.
+2023-06-20 16:36:04.660+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] DatabaseId{00000000[system]} is unavailable.
+2023-06-20 16:36:04.667+0000 INFO  [o.n.k.d.Database] [system/00000000] Waiting for closing transactions.
+2023-06-20 16:36:04.668+0000 INFO  [o.n.k.d.Database] [system/00000000] All transactions are closed.
+2023-06-20 16:36:04.669+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [system/00000000] Checkpoint triggered by "Database shutdown" @ txId: 36 checkpoint started...
+2023-06-20 16:36:04.821+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [system/00000000] Checkpoint triggered by "Database shutdown" @ txId: 36 checkpoint completed in 146ms. Checkpoint flushed 29 pages (0% of total available pages), in 29 IOs. Checkpoint performed with IO limit: unlimited, paused in total 0 times( 0 millis).
+2023-06-20 16:36:04.824+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] [system/00000000] No log version pruned. The strategy used was '104857600 size'. 
+2023-06-20 16:36:04.905+0000 WARN  [o.n.k.i.t.l.f.c.CheckpointFileChannelNativeAccessor] [system/00000000] Unable to evict transaction log from cache with version: 0. Error: ErrorCode=-1, errorMessage='Incorrect file descriptor.'
+2023-06-20 16:36:04.906+0000 WARN  [o.n.k.i.t.l.f.LogFileChannelNativeAccessor] [system/00000000] Unable to evict transaction log from cache with version: 0. Error: ErrorCode=-1, errorMessage='Incorrect file descriptor.'
+2023-06-20 16:36:04.989+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopped 'DatabaseId{00000000[system]}' successfully.
+2023-06-20 16:36:05.005+0000 INFO  [o.n.b.BoltServer] Shutting down Bolt server
+2023-06-20 16:36:05.007+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping 0 connections for connector bolt
+2023-06-20 16:36:05.009+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped all remaining connections for connector bolt
+2023-06-20 16:36:08.967+0000 INFO  [o.n.b.BoltServer] Bolt server has been shut down

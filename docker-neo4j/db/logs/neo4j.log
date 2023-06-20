@@ -39,3 +39,6 @@ The system database supports a restricted set of Cypher clauses. The supported c
 The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 71098a50-7976-4751-955c-7e41974370bf.
 2023-06-20 15:40:03.290+0000 ERROR Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
 The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 4411d1f9-100a-4e5e-955e-0699d172ce48.
+2023-06-20 16:36:03.440+0000 INFO  Neo4j Server shutdown initiated by request
+2023-06-20 16:36:03.458+0000 INFO  Stopping...
+2023-06-20 16:36:09.083+0000 INFO  Stopped.
