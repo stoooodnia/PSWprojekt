@@ -2235,3 +2235,330 @@ java.lang.NullPointerException: Cannot read the array length because "array" is 
 2023-06-20 15:32:26.466+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] id: 9506695CA3F2D489A4FAF9A39776493528994D576829E7900023893B0C7FCEFC
 2023-06-20 15:32:26.470+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] name: system
 2023-06-20 15:32:26.472+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] creationDate: 2023-06-18T15:13:34.494Z
+2023-06-20 15:36:55.673+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=280, gcTime=0, gcCount=0}
+2023-06-20 15:36:56.268+0000 WARN  [o.n.k.i.c.VmPauseMonitorComponent] Detected VM stop-the-world pause: {pauseTime=955, gcTime=0, gcCount=0}
+2023-06-20 15:39:00.355+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:14.823+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:23.008+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:31.208+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:51.544+0000 ERROR [o.n.b.p.c.h.ProtocolHandshakeHandler] Fatal error occurred during protocol handshaking: [id: 0x593e8d1d, L:/172.20.0.2:7687 - R:/172.20.0.1:60996]
+java.lang.NullPointerException: Cannot read the array length because "array" is null
+	at io.netty.buffer.Unpooled.copiedBuffer(Unpooled.java:363) ~[netty-buffer-4.1.84.Final.jar:4.1.84.Final]
+	at org.neo4j.bolt.protocol.common.handler.DiscoveryResponseHandler.channelRead(DiscoveryResponseHandler.java:58) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:336) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:308) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at org.neo4j.bolt.protocol.common.handler.AuthenticationTimeoutHandler.channelRead(AuthenticationTimeoutHandler.java:68) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.handlerRemoved(ByteToMessageDecoder.java:256) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:526) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:458) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:280) ~[netty-codec-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:800) ~[netty-transport-classes-epoll-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:499) ~[netty-transport-classes-epoll-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:397) ~[netty-transport-classes-epoll-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.84.Final.jar:4.1.84.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.84.Final.jar:4.1.84.Final]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+2023-06-20 15:39:51.769+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:53.688+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:53.706+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:54.000+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:54.086+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:54.265+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:54.269+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:54.392+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:57.430+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:39:57.529+0000 ERROR [o.n.b.p.c.f.StateMachineSPIImpl] Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference bd93a768-80d8-405c-8601-99842b0500f1.
+2023-06-20 15:39:57.534+0000 ERROR [o.n.b.p.c.f.StateMachineSPIImpl] Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference bd93a768-80d8-405c-8601-99842b0500f1.
+org.neo4j.fabric.executor.FabricException: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once.
+	at org.neo4j.fabric.executor.Exceptions.transform(Exceptions.java:56) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.Exceptions.transform(Exceptions.java:32) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.transaction.FabricTransactionImpl.execute(FabricTransactionImpl.java:321) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor.run(FabricExecutor.java:134) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.bolt.BoltFabricDatabaseService$BoltTransactionImpl.executeQuery(BoltFabricDatabaseService.java:172) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.AbstractTransactionStateMachineSPI$AbstractBoltResultHandle.start(AbstractTransactionStateMachineSPI.java:128) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine$State.startExecution(TransactionStateMachine.java:534) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine$State$2.run(TransactionStateMachine.java:344) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine.run(TransactionStateMachine.java:98) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine.run(TransactionStateMachine.java:86) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.transaction.StatementProcessorTxManager.runQuery(StatementProcessorTxManager.java:90) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.InTransactionState.processRunMessage(InTransactionState.java:92) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.InTransactionState.processUnsafe(InTransactionState.java:57) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.FailSafeState.process(FailSafeState.java:44) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.fsm.AbstractStateMachine.nextState(AbstractStateMachine.java:136) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.fsm.AbstractStateMachine.process(AbstractStateMachine.java:96) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.lambda$submit$4(AtomicSchedulingConnection.java:113) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.executeJob(AtomicSchedulingConnection.java:336) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.doExecuteJobs(AtomicSchedulingConnection.java:306) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.executeJobs(AtomicSchedulingConnection.java:212) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.RuntimeException: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once.
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.process(AdministrationCommandPlanBuilder.scala:1039) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.process(AdministrationCommandPlanBuilder.scala:156) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.$anonfun$transform$1(Phase.scala:36) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.$anonfun$closing$1(package.scala:25) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.using(package.scala:34) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.closing(package.scala:25) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.transform(Phase.scala:35) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.transform$(Phase.scala:33) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.transform(AdministrationCommandPlanBuilder.scala:156) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:75) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:74) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:74) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.CypherPlanner.planPreparedQuery(CypherPlanner.scala:76) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.doCreatePlan(CypherPlanner.scala:452) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.org$neo4j$cypher$internal$planning$CypherPlanner$$createPlan$1(CypherPlanner.scala:390) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner$$anon$1.compile(CypherPlanner.scala:402) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner$$anon$1.compile(CypherPlanner.scala:401) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.$anonfun$compileAndCache$1(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileOrCompileWithExpressionCodeGenAndCache(QueryCache.scala:294) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileAndCache(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.computeIfAbsentOrStale(QueryCache.scala:172) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.doPlan(CypherPlanner.scala:421) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.plan(CypherPlanner.scala:308) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.CypherCurrentCompiler.compile(CypherCurrentCompiler.scala:127) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.LibraryMasterCompiler.compile(MasterCompiler.scala:114) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.$anonfun$compilerWithExpressionCodeGenOption$2(ExecutionEngine.scala:243) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine$$anon$1.compile(ExecutionEngine.scala:251) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine$$anon$1.compile(ExecutionEngine.scala:245) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.$anonfun$compileAndCache$1(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileOrCompileWithExpressionCodeGenAndCache(QueryCache.scala:294) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileAndCache(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.computeIfAbsentOrStale(QueryCache.scala:172) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.getOrCompile(ExecutionEngine.scala:305) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.doExecute(ExecutionEngine.scala:200) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.$anonfun$execute$1(ExecutionEngine.scala:132) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.closing(ExecutionEngine.scala:179) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.execute(ExecutionEngine.scala:123) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.javacompat.ExecutionEngine.executeQuery(ExecutionEngine.java:138) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricKernelTransaction.lambda$execute$0(FabricKernelTransaction.java:97) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.stream.StatementResults.connectVia(StatementResults.java:51) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricKernelTransaction.run(FabricKernelTransaction.java:85) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricLocalExecutor$LocalTransactionContext.run(FabricLocalExecutor.java:96) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.runLocalQueryAt(FabricExecutor.java:406) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.runExec(FabricExecutor.java:341) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.run(FabricExecutor.java:275) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.run(FabricExecutor.java:241) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor.lambda$run$0(FabricExecutor.java:161) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.transaction.FabricTransactionImpl.execute(FabricTransactionImpl.java:317) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	... 22 more
+2023-06-20 15:40:02.724+0000 ERROR [o.n.b.p.c.f.StateMachineSPIImpl] Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 71098a50-7976-4751-955c-7e41974370bf.
+2023-06-20 15:40:02.732+0000 ERROR [o.n.b.p.c.f.StateMachineSPIImpl] Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 71098a50-7976-4751-955c-7e41974370bf.
+org.neo4j.fabric.executor.FabricException: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once.
+	at org.neo4j.fabric.executor.Exceptions.transform(Exceptions.java:56) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.Exceptions.transform(Exceptions.java:32) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.transaction.FabricTransactionImpl.execute(FabricTransactionImpl.java:321) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor.run(FabricExecutor.java:134) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.bolt.BoltFabricDatabaseService$BoltTransactionImpl.executeQuery(BoltFabricDatabaseService.java:172) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.AbstractTransactionStateMachineSPI$AbstractBoltResultHandle.start(AbstractTransactionStateMachineSPI.java:128) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine$State.startExecution(TransactionStateMachine.java:534) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine$State$2.run(TransactionStateMachine.java:344) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine.run(TransactionStateMachine.java:98) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine.run(TransactionStateMachine.java:86) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.transaction.StatementProcessorTxManager.runQuery(StatementProcessorTxManager.java:90) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.InTransactionState.processRunMessage(InTransactionState.java:92) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.InTransactionState.processUnsafe(InTransactionState.java:57) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.FailSafeState.process(FailSafeState.java:44) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.fsm.AbstractStateMachine.nextState(AbstractStateMachine.java:136) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.fsm.AbstractStateMachine.process(AbstractStateMachine.java:96) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.lambda$submit$4(AtomicSchedulingConnection.java:113) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.executeJob(AtomicSchedulingConnection.java:336) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.doExecuteJobs(AtomicSchedulingConnection.java:270) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.executeJobs(AtomicSchedulingConnection.java:212) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.RuntimeException: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once.
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.process(AdministrationCommandPlanBuilder.scala:1039) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.process(AdministrationCommandPlanBuilder.scala:156) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.$anonfun$transform$1(Phase.scala:36) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.$anonfun$closing$1(package.scala:25) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.using(package.scala:34) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.closing(package.scala:25) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.transform(Phase.scala:35) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.transform$(Phase.scala:33) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.transform(AdministrationCommandPlanBuilder.scala:156) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:75) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:74) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:74) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.CypherPlanner.planPreparedQuery(CypherPlanner.scala:76) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.doCreatePlan(CypherPlanner.scala:452) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.org$neo4j$cypher$internal$planning$CypherPlanner$$createPlan$1(CypherPlanner.scala:390) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner$$anon$1.compile(CypherPlanner.scala:402) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner$$anon$1.compile(CypherPlanner.scala:401) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.$anonfun$compileAndCache$1(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileOrCompileWithExpressionCodeGenAndCache(QueryCache.scala:294) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileAndCache(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.computeIfAbsentOrStale(QueryCache.scala:172) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.doPlan(CypherPlanner.scala:421) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.plan(CypherPlanner.scala:308) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.CypherCurrentCompiler.compile(CypherCurrentCompiler.scala:127) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.LibraryMasterCompiler.compile(MasterCompiler.scala:114) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.$anonfun$compilerWithExpressionCodeGenOption$2(ExecutionEngine.scala:243) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine$$anon$1.compile(ExecutionEngine.scala:251) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine$$anon$1.compile(ExecutionEngine.scala:245) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.$anonfun$compileAndCache$1(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileOrCompileWithExpressionCodeGenAndCache(QueryCache.scala:294) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileAndCache(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.computeIfAbsentOrStale(QueryCache.scala:172) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.getOrCompile(ExecutionEngine.scala:305) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.doExecute(ExecutionEngine.scala:200) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.$anonfun$execute$1(ExecutionEngine.scala:132) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.closing(ExecutionEngine.scala:179) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.execute(ExecutionEngine.scala:123) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.javacompat.ExecutionEngine.executeQuery(ExecutionEngine.java:138) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricKernelTransaction.lambda$execute$0(FabricKernelTransaction.java:97) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.stream.StatementResults.connectVia(StatementResults.java:51) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricKernelTransaction.run(FabricKernelTransaction.java:85) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricLocalExecutor$LocalTransactionContext.run(FabricLocalExecutor.java:96) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.runLocalQueryAt(FabricExecutor.java:406) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.runExec(FabricExecutor.java:341) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.run(FabricExecutor.java:275) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.run(FabricExecutor.java:241) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor.lambda$run$0(FabricExecutor.java:161) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.transaction.FabricTransactionImpl.execute(FabricTransactionImpl.java:317) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	... 22 more
+2023-06-20 15:40:03.294+0000 ERROR [o.n.b.p.c.f.StateMachineSPIImpl] Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 4411d1f9-100a-4e5e-955e-0699d172ce48.
+2023-06-20 15:40:03.307+0000 ERROR [o.n.b.p.c.f.StateMachineSPIImpl] Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 4411d1f9-100a-4e5e-955e-0699d172ce48.
+org.neo4j.fabric.executor.FabricException: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once.
+	at org.neo4j.fabric.executor.Exceptions.transform(Exceptions.java:56) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.Exceptions.transform(Exceptions.java:32) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.transaction.FabricTransactionImpl.execute(FabricTransactionImpl.java:321) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor.run(FabricExecutor.java:134) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.bolt.BoltFabricDatabaseService$BoltTransactionImpl.executeQuery(BoltFabricDatabaseService.java:172) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.AbstractTransactionStateMachineSPI$AbstractBoltResultHandle.start(AbstractTransactionStateMachineSPI.java:128) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine$State.startExecution(TransactionStateMachine.java:534) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine$State$2.run(TransactionStateMachine.java:344) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine.run(TransactionStateMachine.java:98) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.transaction.TransactionStateMachine.run(TransactionStateMachine.java:86) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.transaction.StatementProcessorTxManager.runQuery(StatementProcessorTxManager.java:90) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.InTransactionState.processRunMessage(InTransactionState.java:92) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.InTransactionState.processUnsafe(InTransactionState.java:57) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.v40.fsm.FailSafeState.process(FailSafeState.java:44) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.fsm.AbstractStateMachine.nextState(AbstractStateMachine.java:136) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.fsm.AbstractStateMachine.process(AbstractStateMachine.java:96) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.lambda$submit$4(AtomicSchedulingConnection.java:113) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.executeJob(AtomicSchedulingConnection.java:336) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.doExecuteJobs(AtomicSchedulingConnection.java:306) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at org.neo4j.bolt.protocol.common.connector.connection.AtomicSchedulingConnection.executeJobs(AtomicSchedulingConnection.java:212) ~[neo4j-bolt-5.3.0.jar:5.3.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.RuntimeException: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once.
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.process(AdministrationCommandPlanBuilder.scala:1039) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.process(AdministrationCommandPlanBuilder.scala:156) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.$anonfun$transform$1(Phase.scala:36) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.$anonfun$closing$1(package.scala:25) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.using(package.scala:34) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.helpers.package$.closing(package.scala:25) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.transform(Phase.scala:35) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.Phase.transform$(Phase.scala:33) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.AdministrationCommandPlanBuilder$.transform(AdministrationCommandPlanBuilder.scala:156) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:75) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:74) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.frontend.phases.PipeLine.transform(Transformer.scala:74) ~[neo4j-front-end-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.compiler.CypherPlanner.planPreparedQuery(CypherPlanner.scala:76) ~[neo4j-cypher-planner-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.doCreatePlan(CypherPlanner.scala:452) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.org$neo4j$cypher$internal$planning$CypherPlanner$$createPlan$1(CypherPlanner.scala:390) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner$$anon$1.compile(CypherPlanner.scala:402) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner$$anon$1.compile(CypherPlanner.scala:401) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.$anonfun$compileAndCache$1(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileOrCompileWithExpressionCodeGenAndCache(QueryCache.scala:294) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileAndCache(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.computeIfAbsentOrStale(QueryCache.scala:172) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.doPlan(CypherPlanner.scala:421) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.planning.CypherPlanner.plan(CypherPlanner.scala:308) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.CypherCurrentCompiler.compile(CypherCurrentCompiler.scala:127) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.LibraryMasterCompiler.compile(MasterCompiler.scala:114) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.$anonfun$compilerWithExpressionCodeGenOption$2(ExecutionEngine.scala:243) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine$$anon$1.compile(ExecutionEngine.scala:251) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine$$anon$1.compile(ExecutionEngine.scala:245) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.$anonfun$compileAndCache$1(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileOrCompileWithExpressionCodeGenAndCache(QueryCache.scala:294) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.compileAndCache(QueryCache.scala:259) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.QueryCache.computeIfAbsentOrStale(QueryCache.scala:172) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.getOrCompile(ExecutionEngine.scala:305) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.doExecute(ExecutionEngine.scala:200) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.$anonfun$execute$1(ExecutionEngine.scala:132) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.closing(ExecutionEngine.scala:179) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.ExecutionEngine.execute(ExecutionEngine.scala:123) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.cypher.internal.javacompat.ExecutionEngine.executeQuery(ExecutionEngine.java:138) ~[neo4j-cypher-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricKernelTransaction.lambda$execute$0(FabricKernelTransaction.java:97) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.stream.StatementResults.connectVia(StatementResults.java:51) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricKernelTransaction.run(FabricKernelTransaction.java:85) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricLocalExecutor$LocalTransactionContext.run(FabricLocalExecutor.java:96) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.runLocalQueryAt(FabricExecutor.java:406) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.runExec(FabricExecutor.java:341) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.run(FabricExecutor.java:275) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor$FabricStatementExecution.run(FabricExecutor.java:241) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.executor.FabricExecutor.lambda$run$0(FabricExecutor.java:161) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	at org.neo4j.fabric.transaction.FabricTransactionImpl.execute(FabricTransactionImpl.java:317) ~[neo4j-fabric-5.3.0.jar:5.3.0]
+	... 22 more
+2023-06-20 15:40:40.554+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:40:40.740+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:40:40.947+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:06.627+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:10.680+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:18.305+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:19.560+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:22.184+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:23.050+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:23.090+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:23.179+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:23.709+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:24.031+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:24.181+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:24.353+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:24.770+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:26.002+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:41:27.172+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:45:28.572+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:45:28.572+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:45:28.572+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:50:28.737+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:51:28.556+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:51:28.623+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=system], namedDatabaseId=DatabaseId{00000000[system]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:53:57.575+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}
+2023-06-20 15:55:37.416+0000 INFO  [o.n.p.b.r.GetRoutingTableProcedure] Routing result for database DatabaseReference.Internal{alias=NormalizedDatabaseName[name=neo4j], namedDatabaseId=DatabaseId{2cb88a1d[neo4j]}, primary=true} and routing context Map{address -> String("localhost:7687")} is RoutingResult{routeEndpoints=[localhost:7687], writeEndpoints=[localhost:7687], readEndpoints=[localhost:7687], timeToLiveMillis=300000}

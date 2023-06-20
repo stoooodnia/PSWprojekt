@@ -9,33 +9,27 @@ import { useKeycloak } from "@react-keycloak/web";
 
 type User = {
   nickname: string;
-  email: string;
 };
 
 const Profile = () => {
   const navigate = useNavigate();
+  const { keycloak, initialized } = useKeycloak();
 
-  const { keycloak } = useKeycloak();
+  if (!initialized) {
+    return <div className="text-5xl">Loading...</div>;
+  }
 
-  useLayoutEffect(() => {
-    if (!keycloak.authenticated) {
-      alert("Zaloguj się aby grać!");
-      navigate("/");
-    }
-  });
+  const isAdmin = keycloak.hasRealmRole("APP-ADMIN");
 
   const [Profil, setProfil] = useState<User>({} as User);
   let spyClass = "";
   // CRUD 3 - GET - Get profile of logged user, or another user
   const { id } = useParams();
-  const isAdmin = Cookie.get("isAdmin");
   useEffect(() => {
     if (id === "me") {
-      const email = Cookie.get("userLoggedEmail");
-      const nickname = Cookie.get("userLoggedNickname");
+      const nickname = keycloak.tokenParsed?.preferred_username;
       setProfil({
         nickname: nickname as string,
-        email: email as string,
       });
     } else {
       fetch(`http://localhost:1337/api/profile/${id}`, {
@@ -48,7 +42,6 @@ const Profile = () => {
         .then((resdata) => {
           console.log(resdata);
           setProfil({
-            email: resdata.data.data.email,
             nickname: resdata.data.data.nickname,
           });
         })
@@ -56,7 +49,6 @@ const Profile = () => {
           console.log("nie znaleziono użytkownika");
           setProfil({
             nickname: "???",
-            email: "Nie znaleziono profilu",
           });
         });
     }
@@ -82,11 +74,11 @@ const Profile = () => {
             <FontAwesomeIcon className={spyClass} icon={faUserSecret} />
             <div>
               <h1 className="text-7xl">{Profil.nickname}</h1>
-              <h2 className="text-5xl">{Profil.email}</h2>
+              <h2 className="text-5xl">i jest fanem keycloak :D</h2>
             </div>
           </div>
-          <button
-            hidden={id === "me" && isAdmin === "false" ? false : true}
+          {/* <button
+            hidden={id === "me" && isAdmin ? false : true}
             onClick={() => {
               navigate(`/profile/details/${Profil.nickname}`);
             }}
@@ -96,7 +88,7 @@ const Profile = () => {
             zmień dane{" "}
           </button>
           <button
-            hidden={id !== "me" && isAdmin === "true" ? false : true}
+            hidden={id !== "me" && isAdmin ? false : true}
             onClick={() => {
               navigate(`/profile/details/${id}`);
             }}
@@ -104,9 +96,9 @@ const Profile = () => {
           >
             {" "}
             zmień dane{" "}
-          </button>
-          <button
-            hidden={id === "me" && isAdmin === "false" ? false : true}
+          </button> */}
+          {/* <button
+            hidden={id === "me" && isAdmin ? false : true}
             onClick={() => {
               // CRUD 10 - DELETE - Delete profile
               fetch(`http://localhost:1337/api/profile/${Profil.nickname}`, {
@@ -133,7 +125,7 @@ const Profile = () => {
             usuń profil
           </button>{" "}
           <button
-            hidden={id !== "me" && isAdmin === "true" ? false : true}
+            hidden={id !== "me" && isAdmin ? false : true}
             onClick={() => {
               // CRUD 10 - DELETE - Delete profile
               fetch(`http://localhost:1337/api/profile/${id}`, {
@@ -158,7 +150,7 @@ const Profile = () => {
             className="ml-5 mt-5 w-42 bg-white hover:bg-gray-100 text-pink-500 hover:text-pink-800 font-semibold py-2 px-4 border rounded shadow"
           >
             usuń profil
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import React from "react";
 const AdminPage = () => {
   const { keycloak } = useKeycloak();
   const username = keycloak?.idTokenParsed?.preferred_username;
-  const roles = keycloak?.realmAccess?.roles;
+  const roles = keycloak?.realmAccess?.roles.map((role) => role + ",  ");
 
   return (
     <div>
@@ -12,10 +12,7 @@ const AdminPage = () => {
       <p>Witaj, {username}!</p>
       <p>Twoja rola: {roles}</p>
       <p>Ta sekcja jest placeholderem dla panelu administratora.</p>
-      <p>
-        Tutaj możesz wyświetlić dowolne komponenty lub treści związane z panelem
-        administratora.
-      </p>
+      <p>work in progress</p>
     </div>
   );
 };

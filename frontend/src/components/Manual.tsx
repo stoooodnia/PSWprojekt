@@ -7,12 +7,6 @@ const Manual = () => {
   const navigate = useNavigate();
   const { keycloak } = useKeycloak();
 
-  useLayoutEffect(() => {
-    if (!keycloak.authenticated) {
-      alert("Zaloguj się aby grać!");
-      navigate("/");
-    }
-  });
   return (
     <div className="flex flex-row h-screen w-screen">
       <div

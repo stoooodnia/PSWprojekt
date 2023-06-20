@@ -33,3 +33,9 @@
 2023-06-20 15:32:26.469+0000 INFO  name: system
 2023-06-20 15:32:26.471+0000 INFO  creationDate: 2023-06-18T15:13:34.494Z
 2023-06-20 15:32:26.473+0000 INFO  Started.
+2023-06-20 15:39:57.522+0000 ERROR Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference bd93a768-80d8-405c-8601-99842b0500f1.
+2023-06-20 15:40:02.719+0000 ERROR Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 71098a50-7976-4751-955c-7e41974370bf.
+2023-06-20 15:40:03.290+0000 ERROR Client triggered an unexpected error [Neo.DatabaseError.Statement.ExecutionFailed]: The following unsupported clauses were used: MATCH. 
+The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: CALL, YIELD, RETURN. YIELD and RETURN clauses are optional. The order of the clauses is fixed and each can only occur once., reference 4411d1f9-100a-4e5e-955e-0699d172ce48.

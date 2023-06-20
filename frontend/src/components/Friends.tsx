@@ -19,12 +19,6 @@ interface Props {
 const Friends = () => {
   const { keycloak } = useKeycloak();
 
-  useLayoutEffect(() => {
-    if (!keycloak.authenticated) {
-      keycloak.login();
-    }
-  });
-
   const isAdmin = Cookie.get("isAdmin");
   const [searchTerm, setSearchTerm] = useState("");
   const searchInput = useRef<HTMLInputElement>(null);
