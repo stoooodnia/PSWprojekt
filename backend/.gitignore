@@ -1,6 +1,6 @@
 # took this gitignore from somewhere :))))
 # env variables
-config
+
 
 
 lib-cov
