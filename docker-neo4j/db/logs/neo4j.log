@@ -21,3 +21,6 @@
 2023-06-19 13:26:30.291+0000 INFO  Started.
 2023-06-19 13:33:42.393+0000 WARN  The client is unauthorized due to authentication failure.
 2023-06-19 13:33:42.393+0000 WARN  The client is unauthorized due to authentication failure.
+2023-06-19 19:48:29.818+0000 INFO  Neo4j Server shutdown initiated by request
+2023-06-19 19:48:29.884+0000 INFO  Stopping...
+2023-06-19 19:48:36.275+0000 INFO  Stopped.

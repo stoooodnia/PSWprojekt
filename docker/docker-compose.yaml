@@ -34,45 +34,42 @@ services:
     volumes:
       - ./db_data:/var/lib/postgresql/data
   
-  # frontend:
-  #   container_name: frontend_service
-  #   build:
-  #     context: ../frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - keycloak
-  #     - backend
-  #   networks:
-  #     - network
+  frontend:
+    container_name: frontend_service
+    image: dockeruser4200/baw_front:1.0
+    ports:
+      - 3000:3000
+    depends_on:
+      - keycloak
+      - backend
+    networks:
+      - network
   
-  # neo4j_db:
-  #   container_name: neo4j_db
-  #   image: neo4j:latest
-  #   ports:
-  #    - 7474:7474
-  #    - 7687:7687
-  #   restart: unless-stopped
-  #   environment:
-  #     - NEO4J_AUTH=neo4j/maslo123
-  #   volumes:
-  #     - ../neo4j/db/data:/data
-  #     - ../neo4j/db/conf:/conf
-  #     - ../neo4j/db/logs:/logs
-  #     - ../neo4j/db/plugins:/plugins
-  #   networks:
-  #     - network
+  neo4j_db:
+    container_name: neo4j_db
+    image: neo4j:latest
+    ports:
+     - 7474:7474
+     - 7687:7687
+    restart: unless-stopped
+    environment:
+      - NEO4J_AUTH=neo4j/maslo123
+    volumes:
+      - ../neo4j/db/data:/data
+      - ../neo4j/db/conf:/conf
+      - ../neo4j/db/logs:/logs
+      - ../neo4j/db/plugins:/plugins
+    networks:
+      - network
 
-  # backend: 
-  #   container_name: backend_service
-  #   build:
-  #     context: ../backend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 1337:1337
-  #   depends_on:
-  #     - keycloak
-  #     - neo4j_db
-  #   networks:
-  #     - network
+  backend: 
+    container_name: backend_service
+    image: dockeruser4200/baw_backend:1.0
+    
+    ports:
+      - 1337:1337
+    depends_on:
+      - keycloak
+      - neo4j_db
+    networks:
+      - network

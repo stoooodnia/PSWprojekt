@@ -11,6 +11,7 @@ import Stats from "../components/Stats";
 import Profile from "../components/Profile";
 import ChangeDetails from "../components/ChangeDetails";
 import AdminPage from "../components/AdminPage";
+import { PrivateRoute } from "../utils/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -19,46 +20,60 @@ export const router = createBrowserRouter([
   },
   {
     path: "/play",
-    element: <Play />,
+    element: (
+      <PrivateRoute component={Play} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: (
+      <PrivateRoute component={NotFound} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/friends",
-    element: <Friends />,
+    element: (
+      <PrivateRoute component={Friends} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/friends/:id",
-    element: <Profile />,
+    element: (
+      <PrivateRoute component={Friends} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/manual",
-    element: <Manual />,
+    element: (
+      <PrivateRoute component={Manual} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/stats",
-    element: <Stats />,
+    element: (
+      <PrivateRoute component={Stats} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/game/:id",
-    element: <Game />,
+    element: (
+      <PrivateRoute component={Game} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/lobby",
-    element: <Lobby />,
+    element: (
+      <PrivateRoute component={Lobby} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/profile/:id",
-    element: <Profile />,
-  },
-  {
-    path: "/profile/details/:nickname",
-    element: <ChangeDetails />,
+    element: (
+      <PrivateRoute component={Profile} roles={["APP-USER", "APP-ADMIN"]} />
+    ),
   },
   {
     path: "/adminPage",
-    element: <AdminPage />,
+    element: <PrivateRoute component={AdminPage} roles={["APP-ADMIN"]} />,
   },
 ]);

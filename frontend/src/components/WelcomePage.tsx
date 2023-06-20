@@ -3,7 +3,7 @@ import { useKeycloak } from "@react-keycloak/web";
 import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
-  const { keycloak } = useKeycloak();
+  const { keycloak, initialized } = useKeycloak();
   const navigate = useNavigate();
 
   let username = "";
@@ -11,7 +11,7 @@ const WelcomePage = () => {
   if (keycloak.authenticated) {
     if (keycloak.tokenParsed) {
       const username = keycloak.tokenParsed.preferred_username;
-      alert(username);
+      // alert(username);
       // CRUD 1 - POST - Register
       fetch("http://localhost:1337/api/register", {
         method: "POST",
@@ -22,9 +22,13 @@ const WelcomePage = () => {
           nickname: username,
           admin: keycloak.hasRealmRole("APP-ADMIN"),
         }),
-      }).then((response) => {
-        navigate("/play");
-      });
+      })
+        .then((response) => {
+          navigate("/play");
+        })
+        .catch((err) => {
+          navigate("/play");
+        });
     }
   }
 
