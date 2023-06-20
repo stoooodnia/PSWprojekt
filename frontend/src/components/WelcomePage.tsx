@@ -8,7 +8,7 @@ const WelcomePage = () => {
 
   let username = "";
 
-  if (keycloak.authenticated) {
+  if (keycloak.authenticated && initialized) {
     if (keycloak.tokenParsed) {
       const username = keycloak.tokenParsed.preferred_username;
       // alert(username);

@@ -17,9 +17,12 @@ interface Props {
 }
 
 const Friends = () => {
-  const { keycloak } = useKeycloak();
+  const { keycloak, initialized } = useKeycloak();
 
-  const isAdmin = Cookie.get("isAdmin");
+  if (!initialized) {
+    return <div className="text-5xl">Loading...</div>;
+  }
+
   const [searchTerm, setSearchTerm] = useState("");
   const searchInput = useRef<HTMLInputElement>(null);
   const [Friends, setFriends] = useState([] as any[]);
@@ -33,7 +36,7 @@ const Friends = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          nickname: Cookie.get("userLoggedNickname"),
+          nickname: keycloak.tokenParsed?.preferred_username,
         }),
       })
         .then((res) => res.json())
@@ -48,7 +51,7 @@ const Friends = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          nickname: Cookie.get("userLoggedNickname"),
+          nickname: keycloak.tokenParsed?.preferred_username,
         }),
       })
         .then((res) => res.json())
@@ -124,14 +127,14 @@ const Friends = () => {
       <div className="w-1/2">
         <NavBar />
         <div className="flex">
-          <button
-            hidden={isAdmin === "true" ? false : true}
+          {/* <button
+            hidden={isAdmin ? false : true}
             type="submit"
             className="w-56 bg-white hover:bg-gray-100 text-gray-800 font-semibold mb-5 py-2 px-4 border-2 rounded shadow"
             onClick={() => handleDownload()}
           >
             pobierz wszystkich użytkowników
-          </button>
+          </button> */}
           {/* <input id="import" type="file" />
           <button
             className="w-56 bg-white hover:bg-gray-100 text-gray-800 font-semibold mb-5 py-2 px-4 border-2 rounded shadow"

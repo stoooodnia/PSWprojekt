@@ -10,29 +10,18 @@ type Stats = {
   gamesLost?: number;
 };
 
-const getLoggedUserData = () => {
-  return Cookie.get("userLoggedNickname");
-};
-
 const Stats = () => {
-  const navigate = useNavigate();
   const { keycloak } = useKeycloak();
 
-  useLayoutEffect(() => {
-    if (!keycloak.authenticated) {
-      alert("Zaloguj się aby grać!");
-      navigate("/");
-    }
-  });
   const [Stats, setStats] = useState({ gamesPlayed: 0 } as Stats);
   // CRUD 4 - GET - Get stats of logged user
   useEffect(() => {
-    const loggedUserNickname = getLoggedUserData();
+    const loggedUserNickname = keycloak.tokenParsed?.preferred_username;
     fetch(`http://localhost:1337/api/stats/${loggedUserNickname}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${keycloak.token}`,
+        // Authorization: `Bearer ${keycloak.token}`,
       },
     })
       .then((res) => res.json())
